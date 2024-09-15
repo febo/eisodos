@@ -1,0 +1,16 @@
+[package]
+name = "eisodos"
+publish = false
+
+[[bin]]
+name = "coyote"
+path = "src/main.rs"
+
+[dev-dependencies]
+eisodos-pinocchio = { path="../programs/pinocchio" }
+eisodos-solana-nostd-entrypoint = { path="../programs/solana-nostd-entrypoint" }
+eisodos-solana-program = { path="../programs/solana-program" }
+mollusk-svm = { git="https://github.com/buffalojoec/mollusk.git", rev="3d9734c" }
+mollusk-svm-bencher = { git="https://github.com/buffalojoec/mollusk.git", rev="3d9734c" }
+solana-logger = "1.18.14"
+solana-sdk = "1.18.14"

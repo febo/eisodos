@@ -1,0 +1,15 @@
+[package]
+name = "eisodos-solana-nostd-entrypoint"
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+[package.metadata.solana]
+program-id = "SoLanaNoStdEntrypoint1111111111111111111111"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+
+[dependencies]
+solana-nostd-entrypoint = "0.3.3"
+solana-program = "1.18.14"

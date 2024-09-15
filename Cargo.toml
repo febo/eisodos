@@ -1,0 +1,15 @@
+[workspace]
+resolver = "2"
+members = [
+    "benchmark",
+    "programs/pinocchio",
+    "programs/solana-nostd-entrypoint",
+    "programs/solana-program"
+]
+
+[workspace.metadata.cli]
+solana = "1.18.14"
+
+[workspace.metadata.toolchains]
+format = "1.78.0"
+lint = "1.78.0"

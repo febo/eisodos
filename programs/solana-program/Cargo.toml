@@ -1,0 +1,14 @@
+[package]
+name = "eisodos-solana-program"
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+[package.metadata.solana]
+program-id = "SoLanaProgram111111111111111111111111111111"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+
+[dependencies]
+solana-program = "1.18.14"
