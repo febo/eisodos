@@ -923,7 +923,6 @@ name = "eisodos-pinocchio"
 version = "0.0.0"
 dependencies = [
  "pinocchio",
- "pinocchio-system",
 ]
 
 [[package]]
@@ -1828,6 +1827,7 @@ checksum = "8b870d8c151b6f2fb93e84a13146138f05d02ed11c7e7c54f8826aaaf7c9f184"
 [[package]]
 name = "pinocchio"
 version = "0.0.1"
+source = "git+https://github.com/febo/pinocchio.git#037da97cf9139e263cbf634edf7d377d9c5dab5a"
 dependencies = [
  "pinocchio-macro",
 ]
@@ -1835,18 +1835,12 @@ dependencies = [
 [[package]]
 name = "pinocchio-macro"
 version = "0.0.1"
+source = "git+https://github.com/febo/pinocchio.git#037da97cf9139e263cbf634edf7d377d9c5dab5a"
 dependencies = [
  "bs58 0.5.1",
  "proc-macro2",
  "quote",
  "syn 1.0.109",
-]
-
-[[package]]
-name = "pinocchio-system"
-version = "0.0.0"
-dependencies = [
- "pinocchio",
 ]
 
 [[package]]
