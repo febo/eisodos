@@ -11,11 +11,11 @@
 
 ## Overview
 
-The purpose of `eisodos` is to offer a simple benchmark of different program entrypoint implementations. An entrypoint is used to parse the [SBF input](https://solana.com/docs/programs/faq#input-parameter-serialization) for a program, providing the information regarding accounts and instruction data in a "friendly" way. The SBF loader passes the input parameters as a byte array and the entrypoint then transforms the input into separate typed entities &mdash; `program id`, `accounts` array and `instruction data`.
+The purpose of `eisodos` is to offer a simple benchmark of different program entrypoint implementations. An entrypoint is used to parse the [SBF input](https://solana.com/docs/programs/faq#input-parameter-serialization) for a program, providing the information of an instruction input in a "friendly" way. The SBF loader passes the input parameters as a byte array and the entrypoint then transforms the input into separate typed entities &mdash; `program id`, `accounts` array and `instruction data`.
 
 ## Entrypoints
 
-Entrypoint implementation included in the benchmark:
+Entrypoint implementation currently included in the benchmark:
 
 * [`pinocchio`](https://github.com/febo/pinocchio)
 * [`solana-nostd-entrypoint`](https://github.com/cavemanloverboy/solana-nostd-entrypoint)
@@ -37,7 +37,7 @@ Entrypoint implementation included in the benchmark:
 
 ## Benchmark
 
-The benchmark uses a simple program with multiple instructions to measure the compute units (CUs) consumed by the entrypoint. Note that the intention is not to write the most efficient program. The aim instead is to use the exactly same program implementation, replacing the entrypoint to determine the impact on the CU consumed.
+The benchmark uses a simple program with multiple instructions to measure the compute units (CUs) consumed by the entrypoint. Note that the intention is not to write the most efficient program, instead to reflect an "average" program implemenation. The aim is to use the exactly same program implementation, replacing the entrypoint to determine the impact on the CUs consumed.
 
 The program used has the following instructions:
 ```rust
@@ -100,7 +100,7 @@ After this, you are ready to run individual benchmarks by using:
 cargo bench --bench <ENTRYPOINT_NAME>
 ```
 
-The `ENTRYPOINT_NAME` will be one of `pinocchio`, `solana-nostd-entrypoint` or `solana-program`.
+The `ENTRYPOINT_NAME` will be one of `pinocchio`, `solana_nostd_entrypoint` or `solana_program`.
 
 The results are written to `./target/benches/compute_units.md`. Each execution is described by 3 columns:
 
@@ -109,3 +109,5 @@ The results are written to `./target/benches/compute_units.md`. Each execution i
 * `CUs`: number of compute units consumed by the execution.
 
 * `Delta`: the difference in compute units between latest benchmark and the previous; this will provide a quick way to assess the differences between entrypoints.
+
+The results of an execution are compared to the previous one (if there is one), with delta differences shown after a `+` and `-` symbol.
