@@ -23,14 +23,14 @@ Entrypoint implementation currently included in the benchmark:
 
 | Benchmark              | `pinocchio`   | `solana-nostd-entrypoint` | `solana-program` |
 |------------------------|---------------|---------------------------|------------------|
-| ping                   | 🟩 18          | 🟩 18                     | 47 (+29)         |
-| log                    | 🟩 121         | 🟩 121                    | 150 (+29)        |
-| u64 data + 1 account   | 🟩 44          | 50 (+6)                   | 250 (+206)       |
-| u64 data + 5 accounts  | 🟩 100         | 142 (+42)                 | 898 (+798)       |
-| u64 data + 10 accounts | 🟩 170         | 257 (+87)                 | 1,708 (+1,538)   | 
-| u64 data + 20 accounts | 🟩 310         | 487 (+177)                | 3,328 (+3,018)   |
-| u64 data + 32 accounts | 🟩 478         | 763 (+285)                | 5,272 (+4,794)   |
-| u64 data + 64 accounts | 🟩 926         | 1,499 (+573)              | 10,456 (+9,530)  |
+| ping                   | **18**          | **18**                     | 47 (+29)         |
+| log                    | **121**         | **121**                    | 150 (+29)        |
+| u64 data + 1 account   | **44**          | 50 (+6)                   | 250 (+206)       |
+| u64 data + 5 accounts  | **100**         | 142 (+42)                 | 898 (+798)       |
+| u64 data + 10 accounts | **170**         | 257 (+87)                 | 1,708 (+1,538)   | 
+| u64 data + 20 accounts | **310**         | 487 (+177)                | 3,328 (+3,018)   |
+| u64 data + 32 accounts | **478**         | 763 (+285)                | 5,272 (+4,794)   |
+| u64 data + 64 accounts | **926**         | 1,499 (+573)              | 10,456 (+9,530)  |
 
 > [!NOTE]
 > Values correspond to compute units (CUs) consumed. The delta in relation to the lowest consumption is shown in brackets.
@@ -62,7 +62,7 @@ Similar to the `Ping` instruction, this instruction does not expect any account 
 
 #### `Account`
 
-This instruction receives anb `u64` as part of the instruction data, which specified the number of accounts expected by the processor. The processor only asserts that the number of accounts received is the same as the `expected` number.
+This instruction receives an `u64` value as part of the instruction data, which specifies the number of accounts expected by the processor. The processor only asserts that the number of accounts received is the same as the `expected` value. This in essence measures how much CUs the entrypoint comsumes to parse the input accounts.
 
 ### Program
 
