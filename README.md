@@ -21,16 +21,16 @@ Entrypoint implementation currently included in the benchmark:
 * [`solana-nostd-entrypoint`](https://github.com/cavemanloverboy/solana-nostd-entrypoint)
 * [`solana-program`](https://github.com/anza-xyz/agave/tree/master/sdk/program)
 
-| Benchmark              | `pinocchio`   | `solana-nostd-entrypoint` | `solana-program` |
-|------------------------|---------------|---------------------------|------------------|
-| ping                   | **18**          | **18**                     | 47 (+29)         |
-| log                    | **121**         | **121**                    | 150 (+29)        |
-| u64 data + 1 account   | **44**          | 50 (+6)                   | 250 (+206)       |
-| u64 data + 5 accounts  | **100**         | 142 (+42)                 | 898 (+798)       |
-| u64 data + 10 accounts | **170**         | 257 (+87)                 | 1,708 (+1,538)   | 
-| u64 data + 20 accounts | **310**         | 487 (+177)                | 3,328 (+3,018)   |
-| u64 data + 32 accounts | **478**         | 763 (+285)                | 5,272 (+4,794)   |
-| u64 data + 64 accounts | **926**         | 1,499 (+573)              | 10,456 (+9,530)  |
+| Benchmark              | `pinocchio` | `solana-nostd-entrypoint` | `solana-program` |
+|------------------------|-------------|---------------------------|------------------|
+| ping                   | **18**      | **18**                    | 47 (+29)         |
+| log                    | **121**     | **121**                   | 150 (+29)        |
+| u64 data + 1 account   | **44**      | 50 (+6)                   | 250 (+206)       |
+| u64 data + 5 accounts  | **100**     | 142 (+42)                 | 898 (+798)       |
+| u64 data + 10 accounts | **170**     | 257 (+87)                 | 1,708 (+1,538)   | 
+| u64 data + 20 accounts | **310**     | 487 (+177)                | 3,328 (+3,018)   |
+| u64 data + 32 accounts | **478**     | 763 (+285)                | 5,272 (+4,794)   |
+| u64 data + 64 accounts | **926**     | 1,499 (+573)              | 10,456 (+9,530)  |
 
 > [!NOTE]
 > Values correspond to compute units (CUs) consumed. The delta in relation to the lowest consumption is shown in brackets.
@@ -76,13 +76,13 @@ The program is structure in 4 different source files:
 
 * `processor.rs`: includes the processor for each instruction.
 
-The implementation across all different entrypoint's programs is as similar as possible. In most cases, the only differences are on the types import, since each entrypoint defined its own `AccountInfo` and/or `Pubkey` types.
+The implementation across all different entrypoint programs is as similar as possible. In most cases, the only differences are on the types import, since each entrypoint defines their own `AccountInfo` and/or `Pubkey` types.
 
 ## Evaluation
 
 The evaluation is performed using [`mollusk`](https://github.com/buffalojoec/mollusk).
 
-To run the benchmarks, you will first need to build the programs. The first time after cloning the repository, run:
+To run the benchmarks, you will need to build the programs. After cloning the repository, run:
 
 ```bash
 pnpm install
