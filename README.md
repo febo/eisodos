@@ -30,7 +30,7 @@ Entrypoint implementation currently included in the benchmark:
 | u64 data + 10 accounts | 🟩 170(+1)     | 🟩 **169**                   | 🟥 1,708 (+1,538)   | 
 | u64 data + 20 accounts | 🟩 310 (+1)    | 🟩 **309**                   | 🟥 3,328 (+3,018)   |
 | u64 data + 32 accounts | 🟩 478 (+1)    | 🟩 **477**                   | 🟥 5,272 (+4,794)   |
-| u64 data + 64 accounts | 🟩 927 (+1)    | 🟩 **926**                   | 🟥 10,456 (+9,530)  |
+| u64 data + 64 accounts | 🟩 **926**     | 🟩 **926**                   | 🟥 10,456 (+9,530)  |
 
 > [!NOTE]
 > Values correspond to compute units (CUs) consumed. The delta in relation to the lowest consumption is shown in brackets.
