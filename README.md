@@ -21,16 +21,16 @@ Entrypoint implementation currently included in the benchmark:
 * [`solana-nostd-entrypoint`](https://github.com/cavemanloverboy/solana-nostd-entrypoint)
 * [`solana-program`](https://github.com/anza-xyz/agave/tree/master/sdk/program)
 
-| Benchmark              | `pinocchio` | `solana-nostd-entrypoint` | `solana-program` |
-|------------------------|-------------|---------------------------|------------------|
-| ping                   | **18**      | **18**                    | 47 (+29)         |
-| log                    | **121**     | **121**                   | 150 (+29)        |
-| u64 data + 1 account   | **44**      | 50 (+6)                   | 250 (+206)       |
-| u64 data + 5 accounts  | **100**     | 142 (+42)                 | 898 (+798)       |
-| u64 data + 10 accounts | **170**     | 257 (+87)                 | 1,708 (+1,538)   | 
-| u64 data + 20 accounts | **310**     | 487 (+177)                | 3,328 (+3,018)   |
-| u64 data + 32 accounts | **478**     | 763 (+285)                | 5,272 (+4,794)   |
-| u64 data + 64 accounts | **926**     | 1,499 (+573)              | 10,456 (+9,530)  |
+| Benchmark              | `pinocchio`    | `solana-nostd-entrypoint`   | `solana-program`    |
+|------------------------|----------------|-----------------------------|---------------------|
+| ping                   | 🟩 18 (+1)     | 🟩 **17**                    | 🟨 47 (+29)         |
+| log                    | 🟩 121 (+1)    | 🟩 **120**                   | 🟨 150 (+29)        |
+| u64 data + 1 account   | 🟩 44 (+1)     | 🟩 **43**                    | 🟥 250 (+206)       |
+| u64 data + 5 accounts  | 🟩 100 (+1)    | 🟩 **99**                    | 🟥 898 (+798)       |
+| u64 data + 10 accounts | 🟩 170(+1)     | 🟩 **169**                   | 🟥 1,708 (+1,538)   | 
+| u64 data + 20 accounts | 🟩 310 (+1)    | 🟩 **309**                   | 🟥 3,328 (+3,018)   |
+| u64 data + 32 accounts | 🟩 478 (+1)    | 🟩 **477**                   | 🟥 5,272 (+4,794)   |
+| u64 data + 64 accounts | 🟩 927 (+1)    | 🟩 **926**                   | 🟥 10,456 (+9,530)  |
 
 > [!NOTE]
 > Values correspond to compute units (CUs) consumed. The delta in relation to the lowest consumption is shown in brackets.
