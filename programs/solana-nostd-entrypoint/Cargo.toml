@@ -11,5 +11,5 @@ program-id = "SoLanaNoStdEntrypoint1111111111111111111111"
 crate-type = ["cdylib", "lib"]
 
 [dependencies]
-solana-nostd-entrypoint = "0.3.3"
+solana-nostd-entrypoint = { version = "0.3.3", git = "https://github.com/cavemanloverboy/solana-nostd-entrypoint.git" }
 solana-program = "1.18.14"

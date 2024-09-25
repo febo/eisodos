@@ -11,4 +11,5 @@ program-id = "Pinocchio1111111111111111111111111111111111"
 crate-type = ["cdylib", "lib"]
 
 [dependencies]
-pinocchio = { version="^0", features=["macro"], git="https://github.com/febo/pinocchio.git" }
+pinocchio = "0.1"
+pinocchio-pubkey = "0.1"

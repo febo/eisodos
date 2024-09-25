@@ -1,13 +1,18 @@
+#[allow(unused_imports)]
 use {
     crate::{
         instruction::Instruction,
         processor::{process_account, process_log, process_ping},
     },
-    solana_nostd_entrypoint::{entrypoint_nostd, NoStdAccountInfo},
-    solana_program::{entrypoint::ProgramResult, pubkey::Pubkey},
+    solana_nostd_entrypoint::{
+        basic_panic_impl, entrypoint_nostd, noalloc_allocator, NoStdAccountInfo,
+    },
+    solana_program::{entrypoint::ProgramResult, log, pubkey::Pubkey},
 };
 
 entrypoint_nostd!(process_instruction, 64);
+noalloc_allocator!();
+basic_panic_impl!();
 
 #[inline(always)]
 pub fn process_instruction(

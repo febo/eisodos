@@ -534,15 +534,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "771fe0050b883fcc3ea2359b1a96bcfbc090b7116eae7c3c512c7a083fdf23d3"
 
 [[package]]
-name = "bs58"
-version = "0.5.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bf88ba1141d185c399bee5288d850d63b8369520c1eafc32a0430b5b6c287bf4"
-dependencies = [
- "tinyvec",
-]
-
-[[package]]
 name = "bumpalo"
 version = "3.16.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -923,6 +914,7 @@ name = "eisodos-pinocchio"
 version = "0.0.0"
 dependencies = [
  "pinocchio",
+ "pinocchio-pubkey",
 ]
 
 [[package]]
@@ -999,6 +991,21 @@ name = "feature-probe"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "835a3dc7d1ec9e75e2b5fb4ba75396837112d2060b03f7d43bc1897c7f7211da"
+
+[[package]]
+name = "five8_const"
+version = "0.1.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "72b4f62f0f8ca357f93ae90c8c2dd1041a1f665fde2f889ea9b1787903829015"
+dependencies = [
+ "five8_core",
+]
+
+[[package]]
+name = "five8_core"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9b2a72055cd9cffc40c9f75f1e5810c80559e158796cf2202292ce4745889588"
 
 [[package]]
 name = "flate2"
@@ -1826,21 +1833,18 @@ checksum = "8b870d8c151b6f2fb93e84a13146138f05d02ed11c7e7c54f8826aaaf7c9f184"
 
 [[package]]
 name = "pinocchio"
-version = "0.0.1"
-source = "git+https://github.com/febo/pinocchio.git#037da97cf9139e263cbf634edf7d377d9c5dab5a"
-dependencies = [
- "pinocchio-macro",
-]
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "799f082a41784b8d1b7f767ccd142b6f48d3c8338b98a6960bc46f3c4dd2c2e6"
 
 [[package]]
-name = "pinocchio-macro"
-version = "0.0.1"
-source = "git+https://github.com/febo/pinocchio.git#037da97cf9139e263cbf634edf7d377d9c5dab5a"
+name = "pinocchio-pubkey"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cbb73ff99b839339fa395dde494890a16b718a7bb826d4f9d5ca33cdb284d3c0"
 dependencies = [
- "bs58 0.5.1",
- "proc-macro2",
- "quote",
- "syn 1.0.109",
+ "five8_const",
+ "pinocchio",
 ]
 
 [[package]]
@@ -2451,7 +2455,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4bfcde2fc6946c99c7e3400fadd04d1628d675bfd66cb34d461c0f3224bd27d1"
 dependencies = [
  "block-buffer 0.10.4",
- "bs58 0.4.0",
+ "bs58",
  "bv",
  "either",
  "generic-array",
@@ -2520,10 +2524,8 @@ dependencies = [
 [[package]]
 name = "solana-nostd-entrypoint"
 version = "0.3.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "39bffcabf17b7c3fac8dba63918f39badc1d7b69d5800c74a5c9c90da170d913"
+source = "git+https://github.com/cavemanloverboy/solana-nostd-entrypoint.git#d7cb3cd88464f1f470a00183291aa8472ea28651"
 dependencies = [
- "arrayvec",
  "solana-program",
 ]
 
@@ -2544,7 +2546,7 @@ dependencies = [
  "borsh 0.10.3",
  "borsh 0.9.3",
  "borsh 1.5.1",
- "bs58 0.4.0",
+ "bs58",
  "bv",
  "bytemuck",
  "cc",
@@ -2621,7 +2623,7 @@ dependencies = [
  "bincode",
  "bitflags 2.6.0",
  "borsh 1.5.1",
- "bs58 0.4.0",
+ "bs58",
  "bytemuck",
  "byteorder",
  "chrono",
@@ -2671,7 +2673,7 @@ version = "1.18.23"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2a8613ca80150f7e277e773620ba65d2c5fcc3a08eb8026627d601421ab43aef"
 dependencies = [
- "bs58 0.4.0",
+ "bs58",
  "proc-macro2",
  "quote",
  "rustversion",
