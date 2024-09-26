@@ -21,19 +21,21 @@ Entrypoint implementation currently included in the benchmark:
 * [`solana-nostd-entrypoint`](https://github.com/cavemanloverboy/solana-nostd-entrypoint)
 * [`solana-program`](https://github.com/anza-xyz/agave/tree/master/sdk/program)
 
-| Benchmark              | `pinocchio`    | `solana-nostd-entrypoint`   | `solana-program`    |
-|------------------------|----------------|-----------------------------|---------------------|
-| ping                   | 🟩 18 (+1)     | 🟩 **17**                    | 🟨 47 (+30)         |
-| log                    | 🟩 121 (+1)    | 🟩 **120**                   | 🟨 150 (+30)        |
-| u64 data + 1 account   | 🟩 44 (+1)     | 🟩 **43**                    | 🟥 250 (+206)       |
-| u64 data + 5 accounts  | 🟩 100 (+1)    | 🟩 **99**                    | 🟥 898 (+799)       |
-| u64 data + 10 accounts | 🟩 170(+1)     | 🟩 **169**                   | 🟥 1,708 (+1,539)   | 
-| u64 data + 20 accounts | 🟩 310 (+1)    | 🟩 **309**                   | 🟥 3,328 (+3,019)   |
-| u64 data + 32 accounts | 🟩 478 (+1)    | 🟩 **477**                   | 🟥 5,272 (+4,795)   |
-| u64 data + 64 accounts | 🟩 **926**     | 🟩 **926**                   | 🟥 10,456 (+9,530)  |
+| Benchmark              | `pinocchio`    | `solana-nostd-entrypoint` 🚧 | `solana-program`    |
+|------------------------|----------------|-----------------------------------------|---------------------|
+| ping                   | 🟩 18 (+1)     | 🟩 **17**                                | 🟨 47 (+30)         |
+| log                    | 🟩 121 (+1)    | 🟩 **120**                               | 🟨 150 (+30)        |
+| u64 data + 1 account   | 🟩 44 (+1)     | 🟩 **43**                                | 🟥 250 (+206)       |
+| u64 data + 5 accounts  | 🟩 100 (+1)    | 🟩 **99**                                | 🟥 898 (+799)       |
+| u64 data + 10 accounts | 🟩 170(+1)     | 🟩 **169**                               | 🟥 1,708 (+1,539)   | 
+| u64 data + 20 accounts | 🟩 310 (+1)    | 🟩 **309**                               | 🟥 3,328 (+3,019)   |
+| u64 data + 32 accounts | 🟩 478 (+1)    | 🟩 **477**                               | 🟥 5,272 (+4,795)   |
+| u64 data + 64 accounts | 🟩 **926**     | 🟩 **926**                               | 🟥 10,456 (+9,530)  |
 
 > [!NOTE]
-> Values correspond to compute units (CUs) consumed. The delta in relation to the lowest consumption is shown in brackets.
+> Values correspond to compute units (CUs) consumed by the entrypoint. The processor of each instruction is either empty or with a single assert. The delta in relation to the lowest consumption is shown in brackets.
+>
+> 🚧 The `solana-nostd-entrypoint` is the version from the git repository, which include improvements not yet published.
 
 ## Benchmark
 
