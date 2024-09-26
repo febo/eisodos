@@ -32,7 +32,7 @@ Entrypoint implementation currently included in the benchmark:
 | u64 data + 32 accounts | 🟩 478 (+1)    | 🟩 **477**                               | 🟥 5,272 (+4,795)   |
 | u64 data + 64 accounts | 🟩 **926**     | 🟩 **926**                               | 🟥 10,456 (+9,530)  |
 
-> [!NOTE]
+> [!IMPORTANT]
 > Values correspond to compute units (CUs) consumed by the entrypoint. The processor of each instruction is either empty or with a single assert. The delta in relation to the lowest consumption is shown in brackets.
 >
 > 🚧 The `solana-nostd-entrypoint` is the version from the git repository, which include improvements not yet published.
