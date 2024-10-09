@@ -22,18 +22,21 @@ Entrypoint implementation currently included in the benchmark:
 * [`solana-program`](https://github.com/anza-xyz/agave/tree/master/sdk/program)
 
 | Benchmark              | `pinocchio`    | `solana-nostd-entrypoint` 🚧 | `solana-program`    |
-|------------------------|----------------|-----------------------------------------|---------------------|
-| ping                   | 🟩 18 (+1)     | 🟩 **17**                                | 🟨 47 (+30)         |
-| log                    | 🟩 121 (+1)    | 🟩 **120**                               | 🟨 150 (+30)        |
-| u64 data + 1 account   | 🟩 44 (+1)     | 🟩 **43**                                | 🟥 250 (+206)       |
-| u64 data + 5 accounts  | 🟩 100 (+1)    | 🟩 **99**                                | 🟥 898 (+799)       |
-| u64 data + 10 accounts | 🟩 170(+1)     | 🟩 **169**                               | 🟥 1,708 (+1,539)   | 
-| u64 data + 20 accounts | 🟩 310 (+1)    | 🟩 **309**                               | 🟥 3,328 (+3,019)   |
-| u64 data + 32 accounts | 🟩 478 (+1)    | 🟩 **477**                               | 🟥 5,272 (+4,795)   |
-| u64 data + 64 accounts | 🟩 **926**     | 🟩 **926**                               | 🟥 10,456 (+9,530)  |
+|------------------------|----------------|------------------------------|---------------------|
+| Ping                   | 🟩 **15**      | 🟩 **15**                     | 🟨 45 (+30)         |
+| Log                    | 🟩 **120**     | 🟩 **120**                    | 🟨 150 (+30)        |
+| Account (1)            | 🟩 **42**      | 🟩 **42**                     | 🟥 249 (+207)       |
+| Account (3)            | 🟩 **70**      | 🟩 **70**                     | 🟥 573 (+503)       |
+| Account (5)            | 🟩 **98**      | 🟩 **98**                     | 🟥 897 (+799)       |
+| Account (10)           | 🟩 **168**     | 🟩 **168**                    | 🟥 1,707 (+1,539)   | 
+| Account (20)           | 🟩 **308**     | 🟩 **308**                    | 🟥 3,327 (+3,019)   |
+| Account (32)           | 🟩 **476**     | 🟩 **476**                    | 🟥 5,271 (+4,795)   |
+| Account (64)           | 🟩 **924**     | 🟩 925 (+1)                   | 🟥 10,455 (+9,531)  |
+| CreateAccount          | 🟩 **1,462**   | 🟩 1,496 (+34)                | 🟥 2,809 (+1,347)   |
+| Transfer               | 🟩 **1,452**   | 🟩 1,488 (+36)                | 🟥 2,357 (+905)     |
 
 > [!IMPORTANT]
-> Values correspond to compute units (CUs) consumed by the entrypoint. The processor of each instruction is either empty or with a single assert. The delta in relation to the lowest consumption is shown in brackets.
+> Values correspond to compute units (CUs) consumed by the entrypoint. The delta in relation to the lowest consumption is shown in brackets.
 >
 > 🚧 The `solana-nostd-entrypoint` is the version from the git repository, which include improvements not yet published.
 
@@ -65,6 +68,14 @@ Similar to the `Ping` instruction, this instruction does not expect any account 
 #### `Account`
 
 This instruction receives an `u64` value as part of the instruction data, which specifies the number of accounts expected by the processor. The processor only asserts that the number of accounts received is the same as the `expected` value. This in essence measures how much CUs the entrypoint comsumes to parse the input accounts.
+
+#### `CreateAccount`
+
+This instruction receives 3 accounts (`from`, `account` and `system_program`) and performs a CPI to the System program to create the `account` with `500_000_000` lamports and `10` bytes of account data. These values are fixed on the processor.
+
+#### `Transfer`
+
+This instruction receives 3 accounts (`from`, `to` and `system_program`) and performs a CPI to the System program to transfer `1_000_000_000` lamports. The lamports amount is fixed.
 
 ### Program
 

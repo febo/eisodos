@@ -1,3 +1,4 @@
+use crate::processor::{process_create_account, process_transfer};
 #[allow(unused_imports)]
 use {
     crate::{
@@ -26,5 +27,7 @@ pub fn process_instruction(
         Instruction::Ping => process_ping(),
         Instruction::Log => process_log(),
         Instruction::Account { expected } => process_account(accounts, expected),
+        Instruction::CreateAccount => process_create_account(accounts),
+        Instruction::Transfer => process_transfer(accounts),
     }
 }

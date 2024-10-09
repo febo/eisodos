@@ -10,6 +10,9 @@ program-id = "SoLanaNoStdEntrypoint1111111111111111111111"
 [lib]
 crate-type = ["cdylib", "lib"]
 
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(target_os, values("solana"))'] }
+
 [dependencies]
 solana-nostd-entrypoint = { version = "0.3.3", git = "https://github.com/cavemanloverboy/solana-nostd-entrypoint.git" }
 solana-program = "1.18.14"

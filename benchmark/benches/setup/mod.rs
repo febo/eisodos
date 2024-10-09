@@ -1,14 +1,15 @@
 pub mod runner;
 
-use mollusk_svm::Mollusk;
+use mollusk_svm::{program::system_program, Mollusk};
 use solana_sdk::{
     account::AccountSharedData,
     instruction::{AccountMeta, Instruction},
     pubkey::Pubkey,
     system_program,
 };
+use std::vec;
 
-pub const BASE_LAMPORTS: u64 = 1_000_000_000u64;
+pub const BASE_LAMPORTS: u64 = 2_000_000_000u64;
 
 /// Create a new Mollusk instance for the given program ID and name.
 pub fn setup(program_id: &Pubkey, name: &'static str) -> Mollusk {
@@ -23,6 +24,8 @@ pub enum ProgramInstruction {
     Ping,
     Log,
     Account { expected: u64 },
+    CreateAccount,
+    Transfer,
 }
 
 /// Returns the instruction data for the given instruction.
@@ -36,6 +39,8 @@ pub fn instruction_data(instruction: ProgramInstruction) -> Vec<u8> {
             data.extend_from_slice(&expected.to_le_bytes());
             data
         }
+        ProgramInstruction::CreateAccount => vec![3],
+        ProgramInstruction::Transfer => vec![4],
     }
 }
 
@@ -48,7 +53,7 @@ pub fn generate_pubkeys(count: usize) -> Vec<Pubkey> {
     keys
 }
 
-/// Generates the instructions and accounts for the
+/// Generates the instruction data and accounts for the
 /// `ProgramInstruction::Account` instruction.
 fn generate_account(
     program_id: Pubkey,
@@ -73,6 +78,78 @@ fn generate_account(
             program_id,
             accounts: account_metas,
             data: instruction_data(crate::ProgramInstruction::Account { expected }),
+        },
+        accounts,
+    )
+}
+
+/// Generates the instruction data and accounts for the
+/// `ProgramInstruction::CreateAccount` instruction.
+fn generate_create_account(program_id: Pubkey) -> (Instruction, Vec<(Pubkey, AccountSharedData)>) {
+    let keys = generate_pubkeys(2);
+    let [key1, key2] = keys.as_slice() else {
+        panic!()
+    };
+
+    let (system_program_id, system_program_account) = system_program();
+
+    let accounts = vec![
+        (
+            *key1,
+            AccountSharedData::new(BASE_LAMPORTS, 0, &system_program::ID),
+        ),
+        // account being created, starts with 0 lamports and no data
+        (*key2, AccountSharedData::new(0, 0, &system_program::ID)),
+        (system_program_id, system_program_account),
+    ];
+
+    let account_metas = vec![
+        AccountMeta::new(*key1, true),
+        AccountMeta::new(*key2, true),
+        AccountMeta::new_readonly(system_program_id, false),
+    ];
+
+    (
+        Instruction {
+            program_id,
+            accounts: account_metas,
+            data: instruction_data(crate::ProgramInstruction::CreateAccount),
+        },
+        accounts,
+    )
+}
+
+/// Generates the instruction data and accounts for the
+/// `ProgramInstruction::Transfer` instruction.
+fn generate_transfer(program_id: Pubkey) -> (Instruction, Vec<(Pubkey, AccountSharedData)>) {
+    let keys = generate_pubkeys(2);
+    let [key1, key2] = keys.as_slice() else {
+        panic!()
+    };
+
+    let (system_program_id, system_program_account) = system_program();
+
+    let accounts = vec![
+        (
+            *key1,
+            AccountSharedData::new(BASE_LAMPORTS, 0, &system_program::ID),
+        ),
+        // account receiving the transfer, so it starts with 0 lamports
+        (*key2, AccountSharedData::new(0, 0, &system_program::ID)),
+        (system_program_id, system_program_account),
+    ];
+
+    let account_metas = vec![
+        AccountMeta::new(*key1, true),
+        AccountMeta::new(*key2, true),
+        AccountMeta::new_readonly(system_program_id, false),
+    ];
+
+    (
+        Instruction {
+            program_id,
+            accounts: account_metas,
+            data: instruction_data(crate::ProgramInstruction::Transfer),
         },
         accounts,
     )

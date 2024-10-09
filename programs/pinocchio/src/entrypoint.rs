@@ -1,7 +1,9 @@
 use {
     crate::{
         instruction::Instruction,
-        processor::{process_account, process_log, process_ping},
+        processor::{
+            process_account, process_create_account, process_log, process_ping, process_transfer,
+        },
     },
     pinocchio::{account_info::AccountInfo, entrypoint, entrypoint::ProgramResult, pubkey::Pubkey},
 };
@@ -20,5 +22,7 @@ pub fn process_instruction(
         Instruction::Ping => process_ping(),
         Instruction::Log => process_log(),
         Instruction::Account { expected } => process_account(accounts, expected),
+        Instruction::CreateAccount => process_create_account(accounts),
+        Instruction::Transfer => process_transfer(accounts),
     }
 }

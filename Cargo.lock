@@ -915,6 +915,7 @@ version = "0.0.0"
 dependencies = [
  "pinocchio",
  "pinocchio-pubkey",
+ "pinocchio-system",
 ]
 
 [[package]]
@@ -1833,18 +1834,25 @@ checksum = "8b870d8c151b6f2fb93e84a13146138f05d02ed11c7e7c54f8826aaaf7c9f184"
 
 [[package]]
 name = "pinocchio"
-version = "0.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "799f082a41784b8d1b7f767ccd142b6f48d3c8338b98a6960bc46f3c4dd2c2e6"
+version = "0.2.0"
+source = "git+https://github.com/febo/pinocchio.git#7ad3c20fe47bee2d1fe273da4f02c9bbec9fa1cb"
 
 [[package]]
 name = "pinocchio-pubkey"
-version = "0.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cbb73ff99b839339fa395dde494890a16b718a7bb826d4f9d5ca33cdb284d3c0"
+version = "0.1.1"
+source = "git+https://github.com/febo/pinocchio.git#7ad3c20fe47bee2d1fe273da4f02c9bbec9fa1cb"
 dependencies = [
  "five8_const",
  "pinocchio",
+]
+
+[[package]]
+name = "pinocchio-system"
+version = "0.1.0"
+source = "git+https://github.com/febo/pinocchio.git#7ad3c20fe47bee2d1fe273da4f02c9bbec9fa1cb"
+dependencies = [
+ "pinocchio",
+ "pinocchio-pubkey",
 ]
 
 [[package]]

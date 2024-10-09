@@ -1,4 +1,6 @@
-use super::{generate_account, instruction_data, setup};
+use super::{
+    generate_account, generate_create_account, generate_transfer, instruction_data, setup,
+};
 use mollusk_svm_bencher::MolluskComputeUnitBencher;
 use solana_sdk::{instruction::Instruction, pubkey::Pubkey};
 
@@ -15,7 +17,7 @@ pub fn run(program_id: &Pubkey, name: &'static str) {
         accounts: vec![],
         data: instruction_data(crate::ProgramInstruction::Ping),
     };
-    bencher = bencher.bench(("ping", &instruction, &[]));
+    bencher = bencher.bench(("Ping", &instruction, &[]));
 
     // Log
 
@@ -24,37 +26,52 @@ pub fn run(program_id: &Pubkey, name: &'static str) {
         accounts: vec![],
         data: instruction_data(crate::ProgramInstruction::Log),
     };
-    bencher = bencher.bench(("log", &instruction, &[]));
+    bencher = bencher.bench(("Log", &instruction, &[]));
 
     // Account 1
 
     let (instruction, accounts) = generate_account(*program_id, 1);
-    bencher = bencher.bench(("u64 data + 1 account", &instruction, &accounts));
+    bencher = bencher.bench(("Account (1)", &instruction, &accounts));
+
+    // Account 3
+
+    let (instruction, accounts) = generate_account(*program_id, 3);
+    bencher = bencher.bench(("Account (3)", &instruction, &accounts));
 
     // Account 5
 
     let (instruction, accounts) = generate_account(*program_id, 5);
-    bencher = bencher.bench(("u64 data + 5 accounts", &instruction, &accounts));
+    bencher = bencher.bench(("Account (5)", &instruction, &accounts));
 
-    // InstructionData 10
+    // Account 10
 
     let (instruction, accounts) = generate_account(*program_id, 10);
-    bencher = bencher.bench(("u64 data + 10 accounts", &instruction, &accounts));
+    bencher = bencher.bench(("Account (10)", &instruction, &accounts));
 
-    // InstructionData 20
+    // Account 20
 
     let (instruction, accounts) = generate_account(*program_id, 20);
-    bencher = bencher.bench(("u64 data + 20 accounts", &instruction, &accounts));
+    bencher = bencher.bench(("Account (20)", &instruction, &accounts));
 
-    // InstructionData 32
+    // Account 32
 
     let (instruction, accounts) = generate_account(*program_id, 32);
-    bencher = bencher.bench(("u64 data + 32 accounts", &instruction, &accounts));
+    bencher = bencher.bench(("Account (32)", &instruction, &accounts));
 
-    // InstructionData 64
+    // Account 64
 
     let (instruction, accounts) = generate_account(*program_id, 64);
-    bencher = bencher.bench(("u64 data + 64 accounts", &instruction, &accounts));
+    bencher = bencher.bench(("Account (64)", &instruction, &accounts));
+
+    // CreateAccount
+
+    let (instruction, accounts) = generate_create_account(*program_id);
+    bencher = bencher.bench(("CreateAccount", &instruction, &accounts));
+
+    // Transfer
+
+    let (instruction, accounts) = generate_transfer(*program_id);
+    bencher = bencher.bench(("Transfer", &instruction, &accounts));
 
     // Run the benchmarks.
 
