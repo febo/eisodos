@@ -23,6 +23,7 @@ Entrypoint implementation currently included in the benchmark:
 
 | Benchmark              | `pinocchio`    | `solana-nostd-entrypoint` 🚧 | `solana-program`    |
 |------------------------|----------------|------------------------------|---------------------|
+| *Entrypoint*                                                                                 |
 | Ping                   | 🟩 **15**      | 🟩 **15**                     | 🟨 45 (+30)         |
 | Log                    | 🟩 **120**     | 🟩 **120**                    | 🟨 150 (+30)        |
 | Account (1)            | 🟩 **42**      | 🟩 **42**                     | 🟥 249 (+207)       |
@@ -32,6 +33,7 @@ Entrypoint implementation currently included in the benchmark:
 | Account (20)           | 🟩 **308**     | 🟩 **308**                    | 🟥 3,327 (+3,019)   |
 | Account (32)           | 🟩 **476**     | 🟩 **476**                    | 🟥 5,271 (+4,795)   |
 | Account (64)           | 🟩 **924**     | 🟩 925 (+1)                   | 🟥 10,455 (+9,531)  |
+| *CPI*                                                                                 |
 | CreateAccount          | 🟩 **1,462**   | 🟩 1,496 (+34)                | 🟥 2,809 (+1,347)   |
 | Transfer               | 🟩 **1,452**   | 🟩 1,488 (+36)                | 🟥 2,357 (+905)     |
 
