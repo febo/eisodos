@@ -40,7 +40,7 @@ Entrypoint implementation currently included in the benchmark:
 > [!IMPORTANT]
 > Values correspond to compute units (CUs) consumed by the entrypoint. The delta in relation to the lowest consumption is shown in brackets.
 >
-> 🚧 The `solana-nostd-entrypoint` is the version from the git repository, which include improvements not yet published.
+> Solana CLI `v1.18.23` was used in the bench tests.
 
 ## Benchmark
 

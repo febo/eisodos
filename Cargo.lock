@@ -1834,13 +1834,15 @@ checksum = "8b870d8c151b6f2fb93e84a13146138f05d02ed11c7e7c54f8826aaaf7c9f184"
 
 [[package]]
 name = "pinocchio"
-version = "0.2.0"
-source = "git+https://github.com/febo/pinocchio.git#7ad3c20fe47bee2d1fe273da4f02c9bbec9fa1cb"
+version = "0.6.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c9f716de2190437efa787dd7414f4bcea88d22c2f81bbeecabb7db6d9cc326bd"
 
 [[package]]
 name = "pinocchio-pubkey"
-version = "0.1.1"
-source = "git+https://github.com/febo/pinocchio.git#7ad3c20fe47bee2d1fe273da4f02c9bbec9fa1cb"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b4800103b9bea24df2e78f161403fc8f8c2286cb5f874b2e5feebe6c5c4fb35a"
 dependencies = [
  "five8_const",
  "pinocchio",
@@ -1848,8 +1850,9 @@ dependencies = [
 
 [[package]]
 name = "pinocchio-system"
-version = "0.1.0"
-source = "git+https://github.com/febo/pinocchio.git#7ad3c20fe47bee2d1fe273da4f02c9bbec9fa1cb"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c6a50555b55fde54156049064cc503219068ee53ecd4add7014ec928ee21f67f"
 dependencies = [
  "pinocchio",
  "pinocchio-pubkey",
@@ -2531,8 +2534,9 @@ dependencies = [
 
 [[package]]
 name = "solana-nostd-entrypoint"
-version = "0.3.3"
-source = "git+https://github.com/cavemanloverboy/solana-nostd-entrypoint.git#d7cb3cd88464f1f470a00183291aa8472ea28651"
+version = "0.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3a31873d4a8a860bb8072bc54553bf29748276dd4915692093289908da2bb022"
 dependencies = [
  "solana-program",
 ]

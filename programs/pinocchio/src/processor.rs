@@ -1,6 +1,4 @@
-use pinocchio::{
-    account_info::AccountInfo, entrypoint::ProgramResult, msg, program_error::ProgramError,
-};
+use pinocchio::{account_info::AccountInfo, msg, program_error::ProgramError, ProgramResult};
 use pinocchio_system::instructions::{CreateAccount, Transfer};
 
 #[inline(always)]

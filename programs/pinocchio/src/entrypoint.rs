@@ -5,7 +5,7 @@ use {
             process_account, process_create_account, process_log, process_ping, process_transfer,
         },
     },
-    pinocchio::{account_info::AccountInfo, entrypoint, entrypoint::ProgramResult, pubkey::Pubkey},
+    pinocchio::{account_info::AccountInfo, entrypoint, pubkey::Pubkey, ProgramResult},
 };
 
 entrypoint!(process_instruction);
