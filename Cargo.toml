@@ -8,8 +8,8 @@ members = [
 ]
 
 [workspace.metadata.cli]
-solana = "1.18.14"
+solana = "2.2.0"
 
 [workspace.metadata.toolchains]
-format = "1.78.0"
-lint = "1.78.0"
+format = "1.84.1"
+lint = "1.84.1"

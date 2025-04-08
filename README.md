@@ -17,30 +17,30 @@ The purpose of `eisodos` is to offer a simple benchmark of different program ent
 
 Entrypoint implementation currently included in the benchmark:
 
-* [`pinocchio`](https://github.com/febo/pinocchio)
+* [`pinocchio`](https://github.com/anza-xyz/pinocchio)
 * [`solana-nostd-entrypoint`](https://github.com/cavemanloverboy/solana-nostd-entrypoint)
 * [`solana-program`](https://github.com/anza-xyz/agave/tree/master/sdk/program)
 
 | Benchmark              | `pinocchio`    | `solana-nostd-entrypoint` 🚧 | `solana-program`    |
 |------------------------|----------------|------------------------------|---------------------|
 | *Entrypoint*                                                                                 |
-| Ping                   | 🟩 **15**      | 🟩 **15**                     | 🟨 45 (+30)         |
-| Log                    | 🟩 **120**     | 🟩 **120**                    | 🟨 150 (+30)        |
-| Account (1)            | 🟩 **42**      | 🟩 **42**                     | 🟥 249 (+207)       |
-| Account (3)            | 🟩 **70**      | 🟩 **70**                     | 🟥 573 (+503)       |
-| Account (5)            | 🟩 **98**      | 🟩 **98**                     | 🟥 897 (+799)       |
-| Account (10)           | 🟩 **168**     | 🟩 **168**                    | 🟥 1,707 (+1,539)   | 
-| Account (20)           | 🟩 **308**     | 🟩 **308**                    | 🟥 3,327 (+3,019)   |
-| Account (32)           | 🟩 **476**     | 🟩 **476**                    | 🟥 5,271 (+4,795)   |
-| Account (64)           | 🟩 **924**     | 🟩 925 (+1)                   | 🟥 10,455 (+9,531)  |
-| *CPI*                                                                                 |
-| CreateAccount          | 🟩 **1,462**   | 🟩 1,496 (+34)                | 🟥 2,809 (+1,347)   |
-| Transfer               | 🟩 **1,452**   | 🟩 1,488 (+36)                | 🟥 2,357 (+905)     |
+| Ping                   | 🟩 **14**      | 🟩 **15**                     | 🟨 42 (+28)         |
+| Log                    | 🟩 **119**     | 🟩 **120**                    | 🟨 147 (+28)        |
+| Account (1)            | 🟩 **42**      | 🟩 **42**                     | 🟥 242 (+200)       |
+| Account (3)            | 🟩 **70**      | 🟩 72 (+2)                    | 🟥 560 (+490)       |
+| Account (5)            | 🟩 **98**      | 🟩 102 (+4)                   | 🟥 878 (+780)       |
+| Account (10)           | 🟩 **168**     | 🟩 177 (+9)                   | 🟥 1,673 (+1,505)   | 
+| Account (20)           | 🟩 **308**     | 🟩 327 (+19)                  | 🟥 3,264 (+2,955)   |
+| Account (32)           | 🟩 **476**     | 🟩 507 (+31)                  | 🟥 5,171 (+4,695)   |
+| Account (64)           | 🟩 **924**     | 🟩 988 (+64)                  | 🟥 10,259 (+9,335)  |
+| *CPI*                                                                                        |
+| CreateAccount          | 🟩 **1,443**   | 🟩 1,488 (+45)                | 🟥 2,867 (+1,424)   |
+| Transfer               | 🟩 **1,433**   | 🟩 1,480 (+47)                | 🟥 2,415 (+982)     |
 
 > [!IMPORTANT]
 > Values correspond to compute units (CUs) consumed by the entrypoint. The delta in relation to the lowest consumption is shown in brackets.
 >
-> Solana CLI `v1.18.23` was used in the bench tests.
+> Solana CLI `v2.2.0` was used in the bench tests.
 
 ## Benchmark
 

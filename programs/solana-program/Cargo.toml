@@ -7,8 +7,21 @@ publish = false
 [package.metadata.solana]
 program-id = "SoLanaProgram111111111111111111111111111111"
 
+[lints.rust.unexpected_cfgs]
+level = "warn"
+check-cfg = [
+    'cfg(target_os, values("solana"))',
+    'cfg(feature, values("custom-heap", "custom-panic", "frozen-abi", "no-entrypoint"))',
+]
+
 [lib]
 crate-type = ["cdylib", "lib"]
 
 [dependencies]
-solana-program = "1.18.14"
+solana-account-info = "2.2"
+solana-cpi = "2.2"
+solana-msg = "2.2"
+solana-program-entrypoint = "2.2"
+solana-program-error = "2.2"
+solana-pubkey = "2.2"
+solana-system-interface = { version = "1.0", features = ["bincode"] }

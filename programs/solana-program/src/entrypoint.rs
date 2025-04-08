@@ -1,14 +1,14 @@
-use {
-    crate::{
-        instruction::Instruction,
-        processor::{
-            process_account, process_create_account, process_log, process_ping, process_transfer,
-        },
+use crate::{
+    instruction::Instruction,
+    processor::{
+        process_account, process_create_account, process_log, process_ping, process_transfer,
     },
-    solana_program::{account_info::AccountInfo, entrypoint::ProgramResult, pubkey::Pubkey},
 };
+use solana_account_info::AccountInfo;
+use solana_program_error::ProgramResult;
+use solana_pubkey::Pubkey;
 
-solana_program::entrypoint!(process_instruction);
+solana_program_entrypoint::entrypoint!(process_instruction);
 
 #[inline(always)]
 pub fn process_instruction(

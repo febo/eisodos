@@ -2,7 +2,8 @@ use super::{
     generate_account, generate_create_account, generate_transfer, instruction_data, setup,
 };
 use mollusk_svm_bencher::MolluskComputeUnitBencher;
-use solana_sdk::{instruction::Instruction, pubkey::Pubkey};
+use solana_instruction::Instruction;
+use solana_pubkey::Pubkey;
 
 pub fn run(program_id: &Pubkey, name: &'static str) {
     let mollusk = setup(program_id, name);

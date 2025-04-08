@@ -10,7 +10,11 @@ path = "src/main.rs"
 eisodos-pinocchio = { path="../programs/pinocchio" }
 eisodos-solana-nostd-entrypoint = { path="../programs/solana-nostd-entrypoint" }
 eisodos-solana-program = { path="../programs/solana-program" }
-mollusk-svm = { git="https://github.com/buffalojoec/mollusk.git", rev="3d9734c" }
-mollusk-svm-bencher = { git="https://github.com/buffalojoec/mollusk.git", rev="3d9734c" }
-solana-logger = "1.18.14"
-solana-sdk = "1.18.14"
+mollusk-svm = "0.1.4"
+mollusk-svm-bencher = "0.1.4"
+solana-account = "2.2"
+solana-instruction = "2.2"
+solana-logger = "2.2"
+solana-pubkey = "2.2"
+solana-system-interface = { version = "1.0" }
+

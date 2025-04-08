@@ -1,12 +1,9 @@
 pub mod runner;
 
-use mollusk_svm::{program::system_program, Mollusk};
-use solana_sdk::{
-    account::AccountSharedData,
-    instruction::{AccountMeta, Instruction},
-    pubkey::Pubkey,
-    system_program,
-};
+use mollusk_svm::{program::keyed_account_for_system_program, Mollusk};
+use solana_account::Account;
+use solana_instruction::{AccountMeta, Instruction};
+use solana_pubkey::Pubkey;
 use std::vec;
 
 pub const BASE_LAMPORTS: u64 = 2_000_000_000u64;
@@ -55,10 +52,7 @@ pub fn generate_pubkeys(count: usize) -> Vec<Pubkey> {
 
 /// Generates the instruction data and accounts for the
 /// `ProgramInstruction::Account` instruction.
-fn generate_account(
-    program_id: Pubkey,
-    expected: u64,
-) -> (Instruction, Vec<(Pubkey, AccountSharedData)>) {
+fn generate_account(program_id: Pubkey, expected: u64) -> (Instruction, Vec<(Pubkey, Account)>) {
     let mut keys = generate_pubkeys(expected as usize);
 
     let mut accounts = Vec::with_capacity(keys.len());
@@ -68,7 +62,7 @@ fn generate_account(
         let key = keys.pop().unwrap();
         accounts.push((
             key,
-            AccountSharedData::new(BASE_LAMPORTS, 0, &system_program::ID),
+            Account::new(BASE_LAMPORTS, 0, &solana_system_interface::program::ID),
         ));
         account_metas.push(AccountMeta::new_readonly(key, false));
     }
@@ -85,21 +79,24 @@ fn generate_account(
 
 /// Generates the instruction data and accounts for the
 /// `ProgramInstruction::CreateAccount` instruction.
-fn generate_create_account(program_id: Pubkey) -> (Instruction, Vec<(Pubkey, AccountSharedData)>) {
+fn generate_create_account(program_id: Pubkey) -> (Instruction, Vec<(Pubkey, Account)>) {
     let keys = generate_pubkeys(2);
     let [key1, key2] = keys.as_slice() else {
         panic!()
     };
 
-    let (system_program_id, system_program_account) = system_program();
+    let (system_program_id, system_program_account) = keyed_account_for_system_program();
 
     let accounts = vec![
         (
             *key1,
-            AccountSharedData::new(BASE_LAMPORTS, 0, &system_program::ID),
+            Account::new(BASE_LAMPORTS, 0, &solana_system_interface::program::ID),
         ),
         // account being created, starts with 0 lamports and no data
-        (*key2, AccountSharedData::new(0, 0, &system_program::ID)),
+        (
+            *key2,
+            Account::new(0, 0, &solana_system_interface::program::ID),
+        ),
         (system_program_id, system_program_account),
     ];
 
@@ -121,21 +118,24 @@ fn generate_create_account(program_id: Pubkey) -> (Instruction, Vec<(Pubkey, Acc
 
 /// Generates the instruction data and accounts for the
 /// `ProgramInstruction::Transfer` instruction.
-fn generate_transfer(program_id: Pubkey) -> (Instruction, Vec<(Pubkey, AccountSharedData)>) {
+fn generate_transfer(program_id: Pubkey) -> (Instruction, Vec<(Pubkey, Account)>) {
     let keys = generate_pubkeys(2);
     let [key1, key2] = keys.as_slice() else {
         panic!()
     };
 
-    let (system_program_id, system_program_account) = system_program();
+    let (system_program_id, system_program_account) = keyed_account_for_system_program();
 
     let accounts = vec![
         (
             *key1,
-            AccountSharedData::new(BASE_LAMPORTS, 0, &system_program::ID),
+            Account::new(BASE_LAMPORTS, 0, &solana_system_interface::program::ID),
         ),
         // account receiving the transfer, so it starts with 0 lamports
-        (*key2, AccountSharedData::new(0, 0, &system_program::ID)),
+        (
+            *key2,
+            Account::new(0, 0, &solana_system_interface::program::ID),
+        ),
         (system_program_id, system_program_account),
     ];
 
