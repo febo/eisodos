@@ -21,21 +21,21 @@ Entrypoint implementation currently included in the benchmark:
 * [`solana-nostd-entrypoint`](https://github.com/cavemanloverboy/solana-nostd-entrypoint)
 * [`solana-program`](https://github.com/anza-xyz/agave/tree/master/sdk/program)
 
-| Benchmark              | `pinocchio`    | `solana-nostd-entrypoint` 🚧 | `solana-program`    |
+| Benchmark              | `pinocchio`    | `solana-nostd-entrypoint`    | `solana-program`    |
 |------------------------|----------------|------------------------------|---------------------|
 | *Entrypoint*                                                                                 |
-| Ping                   | 🟩 **14**      | 🟩 **15**                     | 🟨 42 (+28)         |
-| Log                    | 🟩 **119**     | 🟩 **120**                    | 🟨 147 (+28)        |
+| Ping                   | 🟩 **14**      | 🟩 **15**                     | 🟧 42 (+28)         |
+| Log                    | 🟩 **119**     | 🟩 **120**                    | 🟧 147 (+28)        |
 | Account (1)            | 🟩 **42**      | 🟩 **42**                     | 🟥 242 (+200)       |
 | Account (3)            | 🟩 **70**      | 🟩 72 (+2)                    | 🟥 560 (+490)       |
 | Account (5)            | 🟩 **98**      | 🟩 102 (+4)                   | 🟥 878 (+780)       |
 | Account (10)           | 🟩 **168**     | 🟩 177 (+9)                   | 🟥 1,673 (+1,505)   | 
-| Account (20)           | 🟩 **308**     | 🟩 327 (+19)                  | 🟥 3,264 (+2,955)   |
-| Account (32)           | 🟩 **476**     | 🟩 507 (+31)                  | 🟥 5,171 (+4,695)   |
-| Account (64)           | 🟩 **924**     | 🟩 988 (+64)                  | 🟥 10,259 (+9,335)  |
+| Account (20)           | 🟩 **308**     | 🟨 327 (+19)                  | 🟥 3,264 (+2,955)   |
+| Account (32)           | 🟩 **476**     | 🟨 507 (+31)                  | 🟥 5,171 (+4,695)   |
+| Account (64)           | 🟩 **924**     | 🟨 988 (+64)                  | 🟥 10,259 (+9,335)  |
 | *CPI*                                                                                        |
-| CreateAccount          | 🟩 **1,443**   | 🟩 1,488 (+45)                | 🟥 2,867 (+1,424)   |
-| Transfer               | 🟩 **1,433**   | 🟩 1,480 (+47)                | 🟥 2,415 (+982)     |
+| CreateAccount          | 🟩 **1,443**   | 🟨 1,488 (+45)                | 🟥 2,867 (+1,424)   |
+| Transfer               | 🟩 **1,433**   | 🟨 1,480 (+47)                | 🟥 2,415 (+982)     |
 
 > [!IMPORTANT]
 > Values correspond to compute units (CUs) consumed by the entrypoint. The delta in relation to the lowest consumption is shown in brackets.
