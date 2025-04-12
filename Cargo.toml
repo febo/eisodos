@@ -2,6 +2,7 @@
 resolver = "2"
 members = [
     "benchmark",
+    "programs/jiminy",
     "programs/pinocchio",
     "programs/solana-nostd-entrypoint",
     "programs/solana-program"
