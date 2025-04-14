@@ -1,6 +1,5 @@
-use crate::{AccountHandles, Accounts, ProgramResult, MAX_ACCOUNTS, MAX_CPI_ACCOUNTS};
-use jiminy_cpi::invoke_signed;
-use jiminy_program_error::ProgramError;
+use crate::{Accounts, Cpi, ProgramResult};
+use jiminy_program_error::{BuiltInProgramError, ProgramError};
 use jiminy_system_prog_interface::{
     create_account_ix, transfer_ix, CreateAccountAccounts, CreateAccountIxArgs, TransferAccounts,
 };
@@ -25,21 +24,26 @@ pub fn process_account(accounts: &Accounts, expected: u64) -> ProgramResult {
     if accounts.len() == expected as usize {
         Ok(())
     } else {
-        Err(ProgramError::InvalidArgument)
+        Err(ProgramError::from_builtin(
+            BuiltInProgramError::InvalidArgument,
+        ))
     }
 }
 
 #[inline(always)]
-pub fn process_create_account(accounts: &mut Accounts, handles: &AccountHandles) -> ProgramResult {
-    // TODO: need to export const generic from jiminy_system_prog_interface
-    invoke_signed::<MAX_ACCOUNTS, MAX_CPI_ACCOUNTS>(
+pub fn process_create_account(accounts: &mut Accounts) -> ProgramResult {
+    let mut accounts_itr = accounts.iter();
+    let [Some(funding), Some(new), Some(sys_prog)] = core::array::from_fn(|_| accounts_itr.next())
+    else {
+        return Err(ProgramError::from_builtin(
+            BuiltInProgramError::NotEnoughAccountKeys,
+        ));
+    };
+    Cpi::new().invoke_signed(
         accounts,
         create_account_ix(
-            handles[2],
-            CreateAccountAccounts {
-                funding: handles[0],
-                new: handles[1],
-            },
+            sys_prog,
+            CreateAccountAccounts { funding, new },
             CreateAccountIxArgs {
                 lamports: 500_000_000,
                 space: 10,
@@ -52,19 +56,17 @@ pub fn process_create_account(accounts: &mut Accounts, handles: &AccountHandles)
 }
 
 #[inline(always)]
-pub fn process_transfer(accounts: &mut Accounts, handles: &AccountHandles) -> ProgramResult {
-    // TODO: need to export const generic from jiminy_system_prog_interface
-    invoke_signed::<MAX_ACCOUNTS, MAX_CPI_ACCOUNTS>(
+pub fn process_transfer(accounts: &mut Accounts) -> ProgramResult {
+    let mut accounts_itr = accounts.iter();
+    let [Some(from), Some(to), Some(sys_prog)] = core::array::from_fn(|_| accounts_itr.next())
+    else {
+        return Err(ProgramError::from_builtin(
+            BuiltInProgramError::NotEnoughAccountKeys,
+        ));
+    };
+    Cpi::new().invoke_signed(
         accounts,
-        transfer_ix(
-            handles[2],
-            TransferAccounts {
-                from: handles[0],
-                to: handles[1],
-            },
-            1_000_000_000,
-        )
-        .as_instr(),
+        transfer_ix(sys_prog, TransferAccounts { from, to }, 1_000_000_000).as_instr(),
         &[],
     )
 }

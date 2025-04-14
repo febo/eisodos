@@ -1371,7 +1371,7 @@ checksum = "49f1f14873335454500d59611f1cf4a4b0f786f9ac11f4312a78e4cf2566695b"
 [[package]]
 name = "jiminy-account"
 version = "0.1.0"
-source = "git+https://github.com/igneous-labs/jiminy?branch=master#290591ec5066785411918d4e1de4e824ed59cd11"
+source = "git+https://github.com/igneous-labs/jiminy?branch=master#01bf427d62cba76c951bddde0433d3768260a8c7"
 dependencies = [
  "jiminy-program-error",
 ]
@@ -1379,7 +1379,7 @@ dependencies = [
 [[package]]
 name = "jiminy-cpi"
 version = "0.1.0"
-source = "git+https://github.com/igneous-labs/jiminy?branch=master#290591ec5066785411918d4e1de4e824ed59cd11"
+source = "git+https://github.com/igneous-labs/jiminy?branch=master#01bf427d62cba76c951bddde0433d3768260a8c7"
 dependencies = [
  "jiminy-account",
  "jiminy-pda",
@@ -1390,7 +1390,7 @@ dependencies = [
 [[package]]
 name = "jiminy-entrypoint"
 version = "0.1.0"
-source = "git+https://github.com/igneous-labs/jiminy?branch=master#290591ec5066785411918d4e1de4e824ed59cd11"
+source = "git+https://github.com/igneous-labs/jiminy?branch=master#01bf427d62cba76c951bddde0433d3768260a8c7"
 dependencies = [
  "jiminy-account",
  "jiminy-syscall",
@@ -1399,7 +1399,7 @@ dependencies = [
 [[package]]
 name = "jiminy-pda"
 version = "0.1.0"
-source = "git+https://github.com/igneous-labs/jiminy?branch=master#290591ec5066785411918d4e1de4e824ed59cd11"
+source = "git+https://github.com/igneous-labs/jiminy?branch=master#01bf427d62cba76c951bddde0433d3768260a8c7"
 dependencies = [
  "jiminy-syscall",
 ]
@@ -1407,17 +1407,17 @@ dependencies = [
 [[package]]
 name = "jiminy-program-error"
 version = "0.1.0"
-source = "git+https://github.com/igneous-labs/jiminy?branch=master#290591ec5066785411918d4e1de4e824ed59cd11"
+source = "git+https://github.com/igneous-labs/jiminy?branch=master#01bf427d62cba76c951bddde0433d3768260a8c7"
 
 [[package]]
 name = "jiminy-syscall"
 version = "0.1.0"
-source = "git+https://github.com/igneous-labs/jiminy?branch=master#290591ec5066785411918d4e1de4e824ed59cd11"
+source = "git+https://github.com/igneous-labs/jiminy?branch=master#01bf427d62cba76c951bddde0433d3768260a8c7"
 
 [[package]]
 name = "jiminy-system-prog-interface"
 version = "0.1.0"
-source = "git+https://github.com/igneous-labs/jiminy?branch=master#290591ec5066785411918d4e1de4e824ed59cd11"
+source = "git+https://github.com/igneous-labs/jiminy?branch=master#01bf427d62cba76c951bddde0433d3768260a8c7"
 dependencies = [
  "jiminy-cpi",
 ]

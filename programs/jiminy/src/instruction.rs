@@ -1,4 +1,4 @@
-use jiminy_program_error::ProgramError;
+use jiminy_program_error::{BuiltInProgramError, ProgramError};
 
 #[derive(Clone, Debug)]
 #[rustfmt::skip]
@@ -29,7 +29,9 @@ impl Instruction {
             Some((&3, [])) => Ok(Instruction::CreateAccount),
             // 4 - Transfer
             Some((&4, [])) => Ok(Instruction::Transfer),
-            _ => Err(ProgramError::InvalidInstructionData),
+            _ => Err(ProgramError::from_builtin(
+                BuiltInProgramError::InvalidInstructionData,
+            )),
         }
     }
 }
