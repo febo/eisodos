@@ -44,7 +44,7 @@ Entrypoint implementation currently included in the benchmark:
 
 ## Binary Sizes
 
-The size of the compiled binary for the benchmark program is shown below. The delta in relation to the smalles binary size is shown in brackets.
+The size of the compiled benchmark program for each entrypoint is shown below. The delta in relation to the smallest binary size is shown in brackets.
 
 | Binary size (bytes) | `pinocchio`        | `solana-nostd-entrypoint` | `solana-program`    | `jiminy` |
 | ------------------- | ------------------ | ------------------------- | ------------------- | -------- |
