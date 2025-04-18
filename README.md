@@ -34,8 +34,8 @@ Entrypoint implementation currently included in the benchmark:
 | Account (32)  | 🟩 **472**      | 🟨 504 (+32)              | 🟥 4,978 (+4,477) | 🟨 501 (+29) |
 | Account (64)  | 🟩 **920**      | 🟨 985 (+65)              | 🟥 9,874 (+8,893) | 🟨 981 (+61) |
 | _CPI_         |
-| CreateAccount | 🟨 1,449 (+135) | 🟨 1,494 (+180)           | 🟥 2,786 (+1,472) | 🟩 **1,314** |
-| Transfer      | 🟨 1,439 (+133) | 🟨 1,487 (+173)           | 🟥 2,379 (+1,073) | 🟩 **1,306** |
+| CreateAccount | 🟨 1,449 (+142) | 🟨 1,494 (+187)           | 🟥 2,786 (+1,479) | 🟩 **1,307** |
+| Transfer      | 🟨 1,439 (+140) | 🟨 1,487 (+180)           | 🟥 2,379 (+1,080) | 🟩 **1,299** |
 
 > [!IMPORTANT]
 > Values correspond to compute units (CUs) consumed by the entrypoint. The delta in relation to the lowest consumption is shown in brackets.
@@ -48,7 +48,7 @@ The size of the compiled binary for the benchmark program is shown below. The de
 
 | Binary size (bytes) | `pinocchio`        | `solana-nostd-entrypoint` | `solana-program`    | `jiminy` |
 | ------------------- | ------------------ | ------------------------- | ------------------- | -------- |
-|                     | 🟥 10,736 (+7,152) | 🟥 17,720 (+14,136)       | 🟥 64,688 (+61,104) | 🟩 3,584 |
+|                     | 🟥 10,736 (+7,240) | 🟥 17,720 (+14,224)       | 🟥 64,688 (+61,192) | 🟩 3,496 |
 
 ## Benchmark
 

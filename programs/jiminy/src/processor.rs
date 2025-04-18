@@ -1,7 +1,8 @@
 use crate::{Accounts, Cpi, ProgramResult};
 use jiminy_program_error::{BuiltInProgramError, ProgramError};
 use jiminy_system_prog_interface::{
-    create_account_ix, transfer_ix, CreateAccountAccounts, CreateAccountIxArgs, TransferAccounts,
+    create_account_ix, transfer_ix, CreateAccountIxAccounts, CreateAccountIxData,
+    TransferIxAccounts, TransferIxData,
 };
 
 #[inline(always)]
@@ -43,14 +44,11 @@ pub fn process_create_account(accounts: &mut Accounts) -> ProgramResult {
         accounts,
         create_account_ix(
             sys_prog,
-            CreateAccountAccounts { funding, new },
-            CreateAccountIxArgs {
-                lamports: 500_000_000,
-                space: 10,
-                owner: crate::ID,
-            },
-        )
-        .as_instr(),
+            CreateAccountIxAccounts::memset(sys_prog)
+                .with_funding(funding)
+                .with_new(new),
+            &CreateAccountIxData::new(500_000_000, 10, &crate::ID),
+        ),
         &[],
     )
 }
@@ -66,7 +64,13 @@ pub fn process_transfer(accounts: &mut Accounts) -> ProgramResult {
     };
     Cpi::new().invoke_signed(
         accounts,
-        transfer_ix(sys_prog, TransferAccounts { from, to }, 1_000_000_000).as_instr(),
+        transfer_ix(
+            sys_prog,
+            TransferIxAccounts::memset(sys_prog)
+                .with_from(from)
+                .with_to(to),
+            &TransferIxData::new(1_000_000_000),
+        ),
         &[],
     )
 }
