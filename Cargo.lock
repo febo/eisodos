@@ -853,10 +853,8 @@ name = "eisodos-jiminy"
 version = "0.0.0"
 dependencies = [
  "const-crypto",
- "jiminy-account",
  "jiminy-cpi",
  "jiminy-entrypoint",
- "jiminy-program-error",
  "jiminy-syscall",
  "jiminy-system-prog-interface",
 ]

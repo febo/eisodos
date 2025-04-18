@@ -1,4 +1,4 @@
-use jiminy_program_error::{BuiltInProgramError, ProgramError};
+use jiminy_entrypoint::program_error::{BuiltInProgramError, ProgramError};
 
 #[derive(Clone, Debug)]
 #[rustfmt::skip]

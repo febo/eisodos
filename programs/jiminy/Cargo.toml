@@ -18,9 +18,7 @@ crate-type = ["cdylib", "lib"]
 
 [dependencies]
 const-crypto = { version = "^0.3", default-features = false }
-jiminy-account = { git = "https://github.com/igneous-labs/jiminy", branch = "master" }
 jiminy-cpi = { git = "https://github.com/igneous-labs/jiminy", branch = "master" }
 jiminy-entrypoint = { git = "https://github.com/igneous-labs/jiminy", branch = "master" }
-jiminy-program-error = { git = "https://github.com/igneous-labs/jiminy", branch = "master" }
 jiminy-syscall = { git = "https://github.com/igneous-labs/jiminy", branch = "master" }
 jiminy-system-prog-interface = { git = "https://github.com/igneous-labs/jiminy", branch = "master" }

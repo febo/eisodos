@@ -1,5 +1,5 @@
 use crate::{Accounts, Cpi, ProgramResult};
-use jiminy_program_error::{BuiltInProgramError, ProgramError};
+use jiminy_entrypoint::program_error::{BuiltInProgramError, ProgramError};
 use jiminy_system_prog_interface::{
     create_account_ix, transfer_ix, CreateAccountIxAccounts, CreateAccountIxData,
     TransferIxAccounts, TransferIxData,
