@@ -33,13 +33,13 @@ pub fn process_account(accounts: &Accounts, expected: u64) -> ProgramResult {
 
 #[inline(always)]
 pub fn process_create_account(accounts: &mut Accounts) -> ProgramResult {
-    let mut accounts_itr = accounts.iter();
-    let [Some(funding), Some(new), Some(sys_prog)] = core::array::from_fn(|_| accounts_itr.next())
+    let [funding, new, sys_prog] = accounts.as_slice()
     else {
         return Err(ProgramError::from_builtin(
             BuiltInProgramError::NotEnoughAccountKeys,
         ));
     };
+    let [funding, new, sys_prog] = [funding, new, sys_prog].map(|h| *h);
     Cpi::new().invoke_signed(
         accounts,
         create_account_ix(
@@ -55,13 +55,13 @@ pub fn process_create_account(accounts: &mut Accounts) -> ProgramResult {
 
 #[inline(always)]
 pub fn process_transfer(accounts: &mut Accounts) -> ProgramResult {
-    let mut accounts_itr = accounts.iter();
-    let [Some(from), Some(to), Some(sys_prog)] = core::array::from_fn(|_| accounts_itr.next())
+    let [from, to, sys_prog] = accounts.as_slice()
     else {
         return Err(ProgramError::from_builtin(
             BuiltInProgramError::NotEnoughAccountKeys,
         ));
     };
+    let [from, to, sys_prog] = [from, to, sys_prog].map(|h| *h);
     Cpi::new().invoke_signed(
         accounts,
         transfer_ix(
