@@ -1,5 +1,6 @@
 use crate::{Accounts, Cpi, ProgramResult};
 use jiminy_entrypoint::program_error::{BuiltInProgramError, ProgramError};
+use jiminy_log::sol_log;
 use jiminy_system_prog_interface::{
     create_account_ix, transfer_ix, CreateAccountIxAccounts, CreateAccountIxData,
     TransferIxAccounts, TransferIxData,
@@ -13,10 +14,7 @@ pub fn process_ping() -> ProgramResult {
 #[inline(always)]
 pub fn process_log() -> ProgramResult {
     const MSG: &str = "Instruction: Log";
-
-    unsafe {
-        jiminy_syscall::sol_log_(MSG.as_ptr(), MSG.len() as u64);
-    }
+    sol_log(MSG);
     Ok(())
 }
 
