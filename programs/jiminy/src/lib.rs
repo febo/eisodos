@@ -10,7 +10,7 @@ const MAX_ACCOUNTS: usize = 128;
 // TODO: CPI takes up way too much stack space
 const MAX_CPI_ACCOUNTS: usize = 36;
 
-type Cpi<'a> = jiminy_cpi::Cpi<'a, MAX_CPI_ACCOUNTS>;
+type Cpi = jiminy_cpi::Cpi<MAX_CPI_ACCOUNTS>;
 
 type Accounts<'a> = jiminy_entrypoint::account::Accounts<'a, MAX_ACCOUNTS>;
 
