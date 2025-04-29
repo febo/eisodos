@@ -19,7 +19,12 @@ pub use transfer::*;
 ///
 /// These checks are similar to the checks performed by the default invoke in
 /// `solana_program`.
-fn invoke<const ACCOUNTS: usize>(
+///
+/// # Safety
+///
+/// This function assumes that accounts are not mutably borrowed and passed
+/// in the correct order.
+unsafe fn invoke_unchecked<const ACCOUNTS: usize>(
     instruction: &InstructionC,
     accounts: &[&NoStdAccountInfo; ACCOUNTS],
 ) -> ProgramResult {
@@ -29,27 +34,12 @@ fn invoke<const ACCOUNTS: usize>(
 
     const UNINIT: MaybeUninit<AccountInfoC> = MaybeUninit::<AccountInfoC>::uninit();
     let mut infos = [UNINIT; ACCOUNTS];
-
-    let metas = unsafe { core::slice::from_raw_parts(instruction.accounts, ACCOUNTS) };
-
-    for index in 0..ACCOUNTS {
-        let info = &accounts[index];
-        let meta = &metas[index];
-
-        if *info.key() != unsafe { *meta.pubkey } {
-            return Err(ProgramError::InvalidArgument);
-        }
-
-        if meta.is_writable {
-            let _ = info.try_borrow_mut_data();
-            let _ = info.try_borrow_mut_lamports();
-        } else {
-            let _ = info.try_borrow_data();
-            let _ = info.try_borrow_lamports();
-        }
-
-        infos[index].write(info.to_info_c());
-    }
+    infos
+        .iter_mut()
+        .zip(accounts.iter())
+        .for_each(|(info, account)| {
+            info.write(account.to_info_c());
+        });
 
     let seeds: &[&[&[u8]]] = &[];
 

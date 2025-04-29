@@ -5,10 +5,15 @@ use {
             process_account, process_create_account, process_log, process_ping, process_transfer,
         },
     },
-    pinocchio::{account_info::AccountInfo, entrypoint, pubkey::Pubkey, ProgramResult},
+    pinocchio::{
+        account_info::AccountInfo, nostd_panic_handler, program_entrypoint, pubkey::Pubkey,
+        static_allocator, ProgramResult,
+    },
 };
 
-entrypoint!(process_instruction);
+program_entrypoint!(process_instruction);
+static_allocator!();
+nostd_panic_handler!();
 
 #[inline(always)]
 pub fn process_instruction(

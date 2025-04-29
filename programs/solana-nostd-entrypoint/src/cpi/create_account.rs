@@ -1,4 +1,4 @@
-use super::invoke;
+use super::invoke_unchecked;
 use solana_nostd_entrypoint::{InstructionC, NoStdAccountInfo};
 use solana_program::{entrypoint::ProgramResult, pubkey::Pubkey, system_program};
 
@@ -6,7 +6,11 @@ use solana_program::{entrypoint::ProgramResult, pubkey::Pubkey, system_program};
 ///
 /// This function is a wrapper around the system program's `create_account`
 /// instruction.
-pub fn create_account(
+///
+/// # Safety
+///
+/// This function assumes that accounts are not mutably borrowed.
+pub unsafe fn create_account_unchecked(
     from: &NoStdAccountInfo,
     to: &NoStdAccountInfo,
     lamports: u64,
@@ -26,7 +30,7 @@ pub fn create_account(
 
     let instruction_accounts = [from.to_meta_c_signer(), to.to_meta_c_signer()];
 
-    invoke(
+    invoke_unchecked(
         &InstructionC {
             program_id: &system_program::ID,
             accounts: instruction_accounts.as_ptr(),

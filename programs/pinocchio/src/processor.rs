@@ -1,5 +1,5 @@
+use crate::cpi::{create_account_unchecked, transfer_unchecked};
 use pinocchio::{account_info::AccountInfo, msg, program_error::ProgramError, ProgramResult};
-use pinocchio_system::instructions::{CreateAccount, Transfer};
 
 #[inline(always)]
 pub fn process_ping() -> ProgramResult {
@@ -23,22 +23,18 @@ pub fn process_account(accounts: &[AccountInfo], expected: u64) -> ProgramResult
 
 #[inline(always)]
 pub fn process_create_account(accounts: &[AccountInfo]) -> ProgramResult {
-    CreateAccount {
-        from: &accounts[0],
-        to: &accounts[1],
-        lamports: 500_000_000,
-        space: 10,
-        owner: &crate::ID,
-    }
-    .invoke()
+    let [from, to, _remaining @ ..] = accounts else {
+        return Err(ProgramError::InvalidArgument);
+    };
+
+    unsafe { create_account_unchecked(from, to, 500_000_000, 10, &crate::ID) }
 }
 
 #[inline(always)]
 pub fn process_transfer(accounts: &[AccountInfo]) -> ProgramResult {
-    Transfer {
-        from: &accounts[0],
-        to: &accounts[1],
-        lamports: 1_000_000_000,
-    }
-    .invoke()
+    let [from, to, _remaining @ ..] = accounts else {
+        return Err(ProgramError::InvalidArgument);
+    };
+
+    unsafe { transfer_unchecked(from, to, 1_000_000_000) }
 }
