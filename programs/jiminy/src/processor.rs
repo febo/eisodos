@@ -31,8 +31,7 @@ pub fn process_account(accounts: &Accounts, expected: u64) -> ProgramResult {
 
 #[inline(always)]
 pub fn process_create_account(accounts: &mut Accounts) -> ProgramResult {
-    let [funding, new, sys_prog] = accounts.as_slice()
-    else {
+    let [funding, new, sys_prog] = accounts.as_slice() else {
         return Err(ProgramError::from_builtin(
             BuiltInProgramError::NotEnoughAccountKeys,
         ));
@@ -53,8 +52,7 @@ pub fn process_create_account(accounts: &mut Accounts) -> ProgramResult {
 
 #[inline(always)]
 pub fn process_transfer(accounts: &mut Accounts) -> ProgramResult {
-    let [from, to, sys_prog] = accounts.as_slice()
-    else {
+    let [from, to, sys_prog] = accounts.as_slice() else {
         return Err(ProgramError::from_builtin(
             BuiltInProgramError::NotEnoughAccountKeys,
         ));
