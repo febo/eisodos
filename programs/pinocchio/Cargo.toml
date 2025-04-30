@@ -17,5 +17,5 @@ check-cfg = [
 crate-type = ["cdylib", "lib"]
 
 [dependencies]
-pinocchio = { version = "0.8", git = "https://github.com/anza-xyz/pinocchio.git", branch = "febo/static-allocator" }
-pinocchio-pubkey = { version = "0.2", git = "https://github.com/anza-xyz/pinocchio.git", branch = "febo/static-allocator" }
+pinocchio = { version = "0.8", git = "https://github.com/anza-xyz/pinocchio.git", branch = "febo/cpi-tweaks" }
+pinocchio-pubkey = { version = "0.2", git = "https://github.com/anza-xyz/pinocchio.git", branch = "febo/cpi-tweaks" }

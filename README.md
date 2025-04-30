@@ -33,8 +33,8 @@ Entrypoint implementation currently included in the benchmark:
 | Account (32)  | 🟩 **472**     | 🟨 507 (+35)               | 🟥 5,339 (+4,867)  |
 | Account (64)  | 🟩 **920**     | 🟨 988 (+68)               | 🟥 10,523 (+9,603) |
 | _CPI_         |
-| CreateAccount | 🟩 1,325 (+11) | 🟩 **1,314**               | 🟥 2,866 (+1,552)  |
-| Transfer      | 🟩 1,321 (+12) | 🟩 **1,309**               | 🟥 2,459 (+1,150)  |
+| CreateAccount | 🟩 **1,311**   | 🟩 1,314 (+3)              | 🟥 2,866 (+1,555)  |
+| Transfer      | 🟩 **1,307**   | 🟩 1,309 (+2)              | 🟥 2,459 (+1,152)  |
 
 > [!IMPORTANT]
 > Values correspond to compute units (CUs) consumed by the entrypoint. The delta in relation to the lowest consumption is shown in brackets.

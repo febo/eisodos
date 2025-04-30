@@ -6,13 +6,13 @@ use {
         },
     },
     pinocchio::{
-        account_info::AccountInfo, nostd_panic_handler, program_entrypoint, pubkey::Pubkey,
-        static_allocator, ProgramResult,
+        account_info::AccountInfo, no_allocator, nostd_panic_handler, program_entrypoint,
+        pubkey::Pubkey, ProgramResult,
     },
 };
 
 program_entrypoint!(process_instruction);
-static_allocator!();
+no_allocator!();
 nostd_panic_handler!();
 
 #[inline(always)]
