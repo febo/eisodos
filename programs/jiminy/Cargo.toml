@@ -1,0 +1,25 @@
+[package]
+name = "eisodos-jiminy"
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+[package.metadata.solana]
+program-id = "Jim1ny1111111111111111111111111111111111111"
+
+[lints.rust.unexpected_cfgs]
+level = "warn"
+check-cfg = [
+    'cfg(target_os, values("solana"))',
+]
+
+[lib]
+crate-type = ["cdylib", "lib"]
+
+[dependencies]
+const-crypto = { version = "^0.3", default-features = false }
+jiminy-cpi = { git = "https://github.com/igneous-labs/jiminy", branch = "master" }
+jiminy-entrypoint = { git = "https://github.com/igneous-labs/jiminy", branch = "master" }
+jiminy-log = { git = "https://github.com/igneous-labs/jiminy", branch = "master" }
+jiminy-syscall = { git = "https://github.com/igneous-labs/jiminy", branch = "master" }
+jiminy-system-prog-interface = { git = "https://github.com/igneous-labs/jiminy", branch = "master" }

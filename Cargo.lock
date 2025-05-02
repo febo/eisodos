@@ -619,6 +619,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "const-crypto"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1c06f1eb05f06cf2e380fdded278fbf056a38974299d77960555a311dcf91a52"
+dependencies = [
+ "keccak-const",
+ "sha2-const-stable",
+]
+
+[[package]]
 name = "constant_time_eq"
 version = "0.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -825,6 +835,7 @@ dependencies = [
 name = "eisodos"
 version = "0.0.0"
 dependencies = [
+ "eisodos-jiminy",
  "eisodos-pinocchio",
  "eisodos-solana-nostd-entrypoint",
  "eisodos-solana-program",
@@ -835,6 +846,18 @@ dependencies = [
  "solana-logger",
  "solana-pubkey",
  "solana-system-interface",
+]
+
+[[package]]
+name = "eisodos-jiminy"
+version = "0.0.0"
+dependencies = [
+ "const-crypto",
+ "jiminy-cpi",
+ "jiminy-entrypoint",
+ "jiminy-log",
+ "jiminy-syscall",
+ "jiminy-system-prog-interface",
 ]
 
 [[package]]
@@ -1048,6 +1071,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "generic-array-struct"
+version = "0.3.0-bc"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3313f0db62e8711fcace7bf202025b00efe5ab9c8d35209241b79c877f72ba6f"
+dependencies = [
+ "heck",
+ "quote",
+ "syn 2.0.87",
+]
+
+[[package]]
 name = "gethostname"
 version = "0.2.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1140,6 +1174,12 @@ name = "hashbrown"
 version = "0.14.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e5274423e17b7c9fc20b6e7e208532f9b19825d82dfd615708b70edd83df41f1"
+
+[[package]]
+name = "heck"
+version = "0.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2304e00983f87ffb38b55b444b5e3b60a884b5d30c0fca7d82fe33449bbe55ea"
 
 [[package]]
 name = "hermit-abi"
@@ -1345,6 +1385,69 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "49f1f14873335454500d59611f1cf4a4b0f786f9ac11f4312a78e4cf2566695b"
 
 [[package]]
+name = "jiminy-account"
+version = "0.1.0"
+source = "git+https://github.com/igneous-labs/jiminy?branch=master#a428ab29c91871f74f8411cf87a780a6426ed068"
+dependencies = [
+ "jiminy-program-error",
+]
+
+[[package]]
+name = "jiminy-cpi"
+version = "0.1.0"
+source = "git+https://github.com/igneous-labs/jiminy?branch=master#a428ab29c91871f74f8411cf87a780a6426ed068"
+dependencies = [
+ "jiminy-account",
+ "jiminy-pda",
+ "jiminy-program-error",
+ "jiminy-syscall",
+]
+
+[[package]]
+name = "jiminy-entrypoint"
+version = "0.1.0"
+source = "git+https://github.com/igneous-labs/jiminy?branch=master#a428ab29c91871f74f8411cf87a780a6426ed068"
+dependencies = [
+ "jiminy-account",
+ "jiminy-syscall",
+]
+
+[[package]]
+name = "jiminy-log"
+version = "0.1.0"
+source = "git+https://github.com/igneous-labs/jiminy?branch=master#a428ab29c91871f74f8411cf87a780a6426ed068"
+dependencies = [
+ "jiminy-syscall",
+]
+
+[[package]]
+name = "jiminy-pda"
+version = "0.1.0"
+source = "git+https://github.com/igneous-labs/jiminy?branch=master#a428ab29c91871f74f8411cf87a780a6426ed068"
+dependencies = [
+ "jiminy-syscall",
+]
+
+[[package]]
+name = "jiminy-program-error"
+version = "0.1.0"
+source = "git+https://github.com/igneous-labs/jiminy?branch=master#a428ab29c91871f74f8411cf87a780a6426ed068"
+
+[[package]]
+name = "jiminy-syscall"
+version = "0.1.0"
+source = "git+https://github.com/igneous-labs/jiminy?branch=master#a428ab29c91871f74f8411cf87a780a6426ed068"
+
+[[package]]
+name = "jiminy-system-prog-interface"
+version = "0.1.0"
+source = "git+https://github.com/igneous-labs/jiminy?branch=master#a428ab29c91871f74f8411cf87a780a6426ed068"
+dependencies = [
+ "generic-array-struct",
+ "jiminy-cpi",
+]
+
+[[package]]
 name = "jobserver"
 version = "0.1.32"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1371,6 +1474,12 @@ checksum = "ecc2af9a1119c51f12a14607e783cb977bde58bc069ff0c3da1095e635d70654"
 dependencies = [
  "cpufeatures",
 ]
+
+[[package]]
+name = "keccak-const"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "57d8d8ce877200136358e0bbff3a77965875db3af755a11e1fa6b1b3e2df13ea"
 
 [[package]]
 name = "lazy_static"
@@ -2286,6 +2395,12 @@ dependencies = [
  "cpufeatures",
  "digest 0.10.7",
 ]
+
+[[package]]
+name = "sha2-const-stable"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5f179d4e11094a893b82fff208f74d448a7512f99f5a0acbd5c679b705f83ed9"
 
 [[package]]
 name = "sha3"

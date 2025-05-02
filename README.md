@@ -19,27 +19,36 @@ Entrypoint implementation currently included in the benchmark:
 - [`pinocchio`](https://github.com/anza-xyz/pinocchio)
 - [`solana-nostd-entrypoint`](https://github.com/cavemanloverboy/solana-nostd-entrypoint)
 - [`solana-program`](https://github.com/anza-xyz/agave/tree/master/sdk/program)
+- [`jiminy`](https://github.com/igneous-labs/jiminy)
 
-| Benchmark     | `pinocchio`  | `solana-nostd-entrypoint` | `solana-program`  |
-| ------------- | ------------ | ------------------------- | ----------------- |
+| Benchmark     | `pinocchio`     | `solana-nostd-entrypoint` | `solana-program`  | `jiminy`     |
+| ------------- | --------------- | ------------------------- | ----------------- | ------------ |
 | _Entrypoint_  |
-| Ping          | 🟩 **14**    | 🟩 **14**                 | 🟧 41 (+27)       |
-| Log           | 🟩 **119**   | 🟩 **119**                | 🟧 146 (+27)      |
-| Account (1)   | 🟩 **38**    | 🟩 39 (+1)                | 🟥 235 (+196)     |
-| Account (3)   | 🟩 **66**    | 🟩 69 (+3)                | 🟥 541 (+475)     |
-| Account (5)   | 🟩 **94**    | 🟩 99 (+5)                | 🟥 847 (+753)     |
-| Account (10)  | 🟩 **164**   | 🟩 174 (+10)              | 🟥 1,612 (+1,448) |
-| Account (20)  | 🟩 **304**   | 🟨 324 (+20)              | 🟥 3,142 (+2,838) |
-| Account (32)  | 🟩 **472**   | 🟨 504 (+32)              | 🟥 4,978 (+4,506) |
-| Account (64)  | 🟩 **920**   | 🟨 985 (+65)              | 🟥 9,874 (+8,954) |
+| Ping          | 🟩 **14**       | 🟩 **14**                 | 🟧 41 (+27)       | 🟩 **14**    |
+| Log           | 🟩 **119**      | 🟩 **119**                | 🟧 146 (+27)      | 🟩 **119**   |
+| Account (1)   | 🟩 38 (+2)      | 🟩 39 (+3)                | 🟥 235 (+199)     | 🟩 **36**    |
+| Account (3)   | 🟩 **66**       | 🟩 69 (+3)                | 🟥 541 (+475)     | 🟩 **66**    |
+| Account (5)   | 🟩 **94**       | 🟩 99 (+5)                | 🟥 847 (+751)     | 🟩 96 (+2)   |
+| Account (10)  | 🟩 **164**      | 🟩 174 (+10)              | 🟥 1,612 (+1,441) | 🟩 171 (+7)  |
+| Account (20)  | 🟩 **304**      | 🟨 324 (+20)              | 🟥 3,142 (+2,821) | 🟨 321 (+17) |
+| Account (32)  | 🟩 **472**      | 🟨 504 (+32)              | 🟥 4,978 (+4,477) | 🟨 501 (+29) |
+| Account (64)  | 🟩 **920**      | 🟨 985 (+65)              | 🟥 9,874 (+8,893) | 🟨 981 (+61) |
 | _CPI_         |
-| CreateAccount | 🟩 **1,449** | 🟨 1,494 (+45)            | 🟥 2,786 (+1,337) |
-| Transfer      | 🟩 **1,439** | 🟨 1,487 (+48)            | 🟥 2,379 (+940)   |
+| CreateAccount | 🟨 1,449 (+142) | 🟨 1,494 (+187)           | 🟥 2,786 (+1,479) | 🟩 **1,307** |
+| Transfer      | 🟨 1,439 (+140) | 🟨 1,487 (+180)           | 🟥 2,379 (+1,080) | 🟩 **1,299** |
 
 > [!IMPORTANT]
 > Values correspond to compute units (CUs) consumed by the entrypoint. The delta in relation to the lowest consumption is shown in brackets.
 >
 > Solana CLI `v2.2.6` was used in the bench tests.
+
+## Binary Sizes
+
+The size of the compiled benchmark program for each entrypoint is shown below. The delta in relation to the smallest binary size is shown in brackets.
+
+| Binary size (bytes) | `pinocchio`        | `solana-nostd-entrypoint` | `solana-program`    | `jiminy` |
+| ------------------- | ------------------ | ------------------------- | ------------------- | -------- |
+|                     | 🟥 10,736 (+7,240) | 🟥 17,720 (+14,224)       | 🟥 64,688 (+61,192) | 🟩 3,496 |
 
 ## Benchmark
 
