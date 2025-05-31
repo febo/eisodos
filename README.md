@@ -21,7 +21,7 @@ Entrypoint implementation currently included in the benchmark:
 - [`jiminy`](https://github.com/igneous-labs/jiminy)
 
 > [!NOTE]
-> Previous benchmark included the [`solana-nostd-entrypoint`](https://github.com/cavemanloverboy/solana-nostd-entrypoint) – the project has not been archieved and therefore ommitted.
+> Previous benchmark included the [`solana-nostd-entrypoint`](https://github.com/cavemanloverboy/solana-nostd-entrypoint) – the project has not been archived and therefore ommitted.
 
 | Benchmark     | `pinocchio`     | `solana-program`  | `jiminy`     |
 | ------------- | --------------- | ----------------- | ------------ |
@@ -65,8 +65,8 @@ the helpers.
 
 The benchmark uses a simple program with multiple instructions to measure the compute units (CUs) consumed by the entrypoint. Note that the intention is not to write the most efficient program, instead to reflect an "average" program implementation. The aim is to use the exactly same program implementation, replacing the entrypoint to determine the impact on the CUs consumed.
 
-> [!NOTE]
-> Note that this not apply to the instructions that use the CPI since these involve using library specific helpers.
+> [!WARNING]
+> This not apply to instructions that use CPIs since these involve using library specific helpers.
 
 The program used has the following instructions:
 
