@@ -1646,12 +1646,12 @@ checksum = "8b870d8c151b6f2fb93e84a13146138f05d02ed11c7e7c54f8826aaaf7c9f184"
 [[package]]
 name = "pinocchio"
 version = "0.8.4"
-source = "git+https://github.com/anza-xyz/pinocchio.git?branch=febo%2Fsystem-inline#023ac9708ae125f0ab189303617e39070f5d97ff"
+source = "git+https://github.com/anza-xyz/pinocchio.git?branch=febo%2Fentrypoint-cleanup#936160198fe05e95920db5a8bb0576cbd7fda8f1"
 
 [[package]]
 name = "pinocchio-pubkey"
 version = "0.2.4"
-source = "git+https://github.com/anza-xyz/pinocchio.git?branch=febo%2Fsystem-inline#023ac9708ae125f0ab189303617e39070f5d97ff"
+source = "git+https://github.com/anza-xyz/pinocchio.git?branch=febo%2Fentrypoint-cleanup#936160198fe05e95920db5a8bb0576cbd7fda8f1"
 dependencies = [
  "five8_const",
  "pinocchio",
@@ -1660,7 +1660,7 @@ dependencies = [
 [[package]]
 name = "pinocchio-system"
 version = "0.2.3"
-source = "git+https://github.com/anza-xyz/pinocchio.git?branch=febo%2Fsystem-inline#023ac9708ae125f0ab189303617e39070f5d97ff"
+source = "git+https://github.com/anza-xyz/pinocchio.git?branch=febo%2Fentrypoint-cleanup#936160198fe05e95920db5a8bb0576cbd7fda8f1"
 dependencies = [
  "pinocchio",
  "pinocchio-pubkey",
