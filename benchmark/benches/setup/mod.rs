@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 pub mod runner;
 
 use mollusk_svm::{program::keyed_account_for_system_program, Mollusk};
