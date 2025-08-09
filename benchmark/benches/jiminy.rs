@@ -14,10 +14,13 @@ use setup::*;
 mod jiminy {
 
     use super::*;
+    use solana_pubkey::Pubkey;
     use test::Bencher;
+
+    pub const ID: Pubkey = Pubkey::from_str_const("Jim1ny1111111111111111111111111111111111111");
 
     #[bench]
     fn run(_bencher: &mut Bencher) {
-        runner::run(&eisodos_jiminy::ID.into(), "eisodos_jiminy");
+        runner::run(&ID, "eisodos_jiminy");
     }
 }

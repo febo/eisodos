@@ -37,9 +37,9 @@ Entrypoint implementation currently included in the benchmark:
 
 > [!IMPORTANT]
 > Values correspond to compute units (CUs) consumed by the entrypoint. The delta in relation to the lowest consumption is shown in brackets.
->   - 🟩 (green): value within 10 CUs of the best value (`value < (best value + 10)`)
->   - 🟨 (yellow): value within 100 CUs of the best value (`value < (best value + 100)`)
->   - 🟥 (red): value over 100 CUs of the best value (`value > (best value + 100)`)
+>   - 🟩 (green): value within 10 CUs of the best value (`value < best value + 10`)
+>   - 🟨 (yellow): value within 100 CUs of the best value (`value < best value + 100`)
+>   - 🟥 (red): value over 100 CUs of the best value (`value >= best value + 100`)
 >
 > Solana platform tools `v1.51` with `LTO` enabled was used in the bench tests.
 
@@ -67,7 +67,7 @@ There are also benchmarks for CPI and binary size produced by the different entr
 The benchmark uses a simple program with multiple instructions to measure the compute units (CUs) consumed by the entrypoint. Note that the intention is not to write the most efficient program, instead to reflect an "average" program implementation. The aim is to use the exactly same program implementation, replacing the entrypoint to determine the impact on the CUs consumed.
 
 > [!WARNING]
-> This not apply to instructions that use CPIs since these involve using library specific helpers.
+> This does not apply to instructions that use CPIs since these involve using library specific helpers.
 
 The program used has the following instructions:
 
