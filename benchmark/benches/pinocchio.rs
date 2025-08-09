@@ -14,10 +14,13 @@ use setup::*;
 mod pinocchio {
 
     use super::*;
+    use solana_pubkey::Pubkey;
     use test::Bencher;
+
+    pub const ID: Pubkey = Pubkey::from_str_const("Pinocchio1111111111111111111111111111111111");
 
     #[bench]
     fn run(_bencher: &mut Bencher) {
-        runner::run(&eisodos_pinocchio::ID.into(), "eisodos_pinocchio");
+        runner::run(&ID, "eisodos_pinocchio");
     }
 }

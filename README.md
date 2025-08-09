@@ -12,47 +12,62 @@
 
 The purpose of `eisodos` is to offer a simple benchmark of different program entrypoint implementations. An entrypoint is used to parse the [SBF input](https://solana.com/docs/programs/faq#input-parameter-serialization) for a program, providing the information of an instruction input in a "friendly" way. The SBF loader passes the input parameters as a byte array and the entrypoint then transforms the input into separate typed entities &mdash; `program id`, `accounts` array and `instruction data`.
 
-## Entrypoints
+## Entrypoint
 
 Entrypoint implementation currently included in the benchmark:
 
 - [`pinocchio`](https://github.com/anza-xyz/pinocchio)
-- [`solana-nostd-entrypoint`](https://github.com/cavemanloverboy/solana-nostd-entrypoint)
 - [`solana-program`](https://github.com/anza-xyz/agave/tree/master/sdk/program)
 - [`jiminy`](https://github.com/igneous-labs/jiminy)
 
-| Benchmark     | `pinocchio`     | `solana-nostd-entrypoint` | `solana-program`  | `jiminy`     |
-| ------------- | --------------- | ------------------------- | ----------------- | ------------ |
-| _Entrypoint_  |
-| Ping          | 🟩 **14**       | 🟩 **14**                 | 🟧 41 (+27)       | 🟩 **14**    |
-| Log           | 🟩 **119**      | 🟩 **119**                | 🟧 146 (+27)      | 🟩 **119**   |
-| Account (1)   | 🟩 38 (+2)      | 🟩 39 (+3)                | 🟥 235 (+199)     | 🟩 **36**    |
-| Account (3)   | 🟩 **66**       | 🟩 69 (+3)                | 🟥 541 (+475)     | 🟩 **66**    |
-| Account (5)   | 🟩 **94**       | 🟩 99 (+5)                | 🟥 847 (+751)     | 🟩 96 (+2)   |
-| Account (10)  | 🟩 **164**      | 🟩 174 (+10)              | 🟥 1,612 (+1,441) | 🟩 171 (+7)  |
-| Account (20)  | 🟩 **304**      | 🟨 324 (+20)              | 🟥 3,142 (+2,821) | 🟨 321 (+17) |
-| Account (32)  | 🟩 **472**      | 🟨 504 (+32)              | 🟥 4,978 (+4,477) | 🟨 501 (+29) |
-| Account (64)  | 🟩 **920**      | 🟨 985 (+65)              | 🟥 9,874 (+8,893) | 🟨 981 (+61) |
-| _CPI_         |
-| CreateAccount | 🟨 1,449 (+142) | 🟨 1,494 (+187)           | 🟥 2,786 (+1,479) | 🟩 **1,307** |
-| Transfer      | 🟨 1,439 (+140) | 🟨 1,487 (+180)           | 🟥 2,379 (+1,080) | 🟩 **1,299** |
+> [!NOTE]
+> Previous benchmark included the [`solana-nostd-entrypoint`](https://github.com/cavemanloverboy/solana-nostd-entrypoint) – the project has not been archived and therefore ommitted.
+
+| Benchmark     | `pinocchio`     | `solana-program` | `jiminy`      |
+| ------------- | --------------- | ---------------- | ------------- |
+| Ping          | 🟩 **14**       | 🟨 98 (+84)       | 🟩 16 (+2)    |
+| Log           | 🟩 **118**      | 🟨 202 (+84)      | 🟩 120 (+3)   |
+| Account (1)   | 🟩 **22**       | 🟥 268 (+246)     | 🟨 37 (+15)   |
+| Account (3)   | 🟩 **44**       | 🟥 546 (+502)     | 🟨 67 (+23)   |
+| Account (5)   | 🟩 **59**       | 🟥 824 (+765)     | 🟨 97 (+38)   |
+| Account (10)  | 🟩 **101**      | 🟥 1,519 (+1,418) | 🟨 172 (+71)  |
+| Account (20)  | 🟩 **177**      | 🟥 2,909 (+2,732) | 🟥 322 (+145) |
+| Account (32)  | 🟩 **269**      | 🟥 4,577 (+4,308) | 🟥 502 (+233) |
+| Account (64)  | 🟩 **512**      | 🟥 9,025 (+8,513) | 🟥 982 (+470) |
 
 > [!IMPORTANT]
 > Values correspond to compute units (CUs) consumed by the entrypoint. The delta in relation to the lowest consumption is shown in brackets.
+>   - 🟩 (green): value within 10 CUs of the best value (`value < best value + 10`)
+>   - 🟨 (yellow): value within 100 CUs of the best value (`value < best value + 100`)
+>   - 🟥 (red): value over 100 CUs of the best value (`value >= best value + 100`)
 >
-> Solana CLI `v2.2.6` was used in the bench tests.
+> Solana platform tools `v1.51` with `LTO` enabled was used in the bench tests.
 
-## Binary Sizes
+## CPI and Binary Size
 
-The size of the compiled benchmark program for each entrypoint is shown below. The delta in relation to the smallest binary size is shown in brackets.
+There are also benchmarks for CPI and binary size produced by the different entrypoints libraries. Note that these actually measure how efficient the helpers of the library are instead of the entrypoint efficiency, since it is generally possible to improve/re-write the helpers.
 
-| Binary size (bytes) | `pinocchio`        | `solana-nostd-entrypoint` | `solana-program`    | `jiminy` |
-| ------------------- | ------------------ | ------------------------- | ------------------- | -------- |
-|                     | 🟥 10,736 (+7,240) | 🟥 17,720 (+14,224)       | 🟥 64,688 (+61,192) | 🟩 3,496 |
+
+### CPI
+
+| Benchmark (CPI)        | `pinocchio`     | `solana-program`  | `jiminy`     |
+| ---------------------- | --------------- | ----------------- | ------------ |
+| system::create_account | 🟩 **1,291**    | 🟥 2,592 (+1,301) | 🟨 1,307 (+13)  |
+| system::transfer       | 🟩 **1,287**    | 🟥 2,189 (+902)   | 🟨 1,301 (+14)  |
+
+
+### Binary Size
+
+|                     | `pinocchio`     | `solana-program` | `jiminy`  |
+| ------------------- | --------------- | -----------------| --------- |
+| Binary size (bytes) | 5,824 (+2,144)  | 64,784 (+61,104) | **3,680** |
 
 ## Benchmark
 
 The benchmark uses a simple program with multiple instructions to measure the compute units (CUs) consumed by the entrypoint. Note that the intention is not to write the most efficient program, instead to reflect an "average" program implementation. The aim is to use the exactly same program implementation, replacing the entrypoint to determine the impact on the CUs consumed.
+
+> [!WARNING]
+> This does not apply to instructions that use CPIs since these involve using library specific helpers.
 
 The program used has the following instructions:
 
@@ -62,7 +77,9 @@ pub enum Instruction {
     Log,
     Account {
         expected: u64,
-    }
+    },
+    CreateAccount,
+    Transfer
 }
 ```
 
@@ -115,7 +132,7 @@ pnpm install
 This will install the required packages. Then all programs can be buiit using:
 
 ```bash
-pnpm programs:build
+RUSTFLAGS="-C embed-bitcode=yes -C lto=fat" pnpm programs:build --tools-version v1.51
 ```
 
 After this, you are ready to run individual benchmarks by using:

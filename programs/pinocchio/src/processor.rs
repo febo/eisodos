@@ -23,9 +23,13 @@ pub fn process_account(accounts: &[AccountInfo], expected: u64) -> ProgramResult
 
 #[inline(always)]
 pub fn process_create_account(accounts: &[AccountInfo]) -> ProgramResult {
+    let [from, to, _remaining @ ..] = accounts else {
+        return Err(ProgramError::InvalidArgument);
+    };
+
     CreateAccount {
-        from: &accounts[0],
-        to: &accounts[1],
+        from,
+        to,
         lamports: 500_000_000,
         space: 10,
         owner: &crate::ID,
@@ -35,9 +39,13 @@ pub fn process_create_account(accounts: &[AccountInfo]) -> ProgramResult {
 
 #[inline(always)]
 pub fn process_transfer(accounts: &[AccountInfo]) -> ProgramResult {
+    let [from, to, _remaining @ ..] = accounts else {
+        return Err(ProgramError::InvalidArgument);
+    };
+
     Transfer {
-        from: &accounts[0],
-        to: &accounts[1],
+        from,
+        to,
         lamports: 1_000_000_000,
     }
     .invoke()

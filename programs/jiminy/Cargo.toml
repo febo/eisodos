@@ -14,7 +14,7 @@ check-cfg = [
 ]
 
 [lib]
-crate-type = ["cdylib", "lib"]
+crate-type = ["cdylib"]
 
 [dependencies]
 const-crypto = { version = "^0.3", default-features = false }

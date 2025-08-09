@@ -15,7 +15,7 @@ check-cfg = [
 ]
 
 [lib]
-crate-type = ["cdylib", "lib"]
+crate-type = ["cdylib"]
 
 [dependencies]
 solana-account-info = "2.2"
