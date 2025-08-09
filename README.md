@@ -43,7 +43,7 @@ Entrypoint implementation currently included in the benchmark:
 >
 > Solana platform tools `v1.51` with `LTO` enabled was used in the bench tests.
 
-## CPI and Binary Size
+## CPI and Binary Size
 
 There are also benchmarks for CPI and binary size produced by the different entrypoints libraries. Note that these actually measure how efficient the helpers of the library are instead of the entrypoint efficiency, since it is generally possible to improve/re-write the helpers.
 
