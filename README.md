@@ -23,43 +23,44 @@ Entrypoint implementation currently included in the benchmark:
 > [!NOTE]
 > Previous benchmark included the [`solana-nostd-entrypoint`](https://github.com/cavemanloverboy/solana-nostd-entrypoint) – the project has not been archived and therefore ommitted.
 
-| Benchmark     | `pinocchio`     | `solana-program`  | `jiminy`     |
-| ------------- | --------------- | ----------------- | ------------ |
-| Ping          | 🟩 **12**       | 🟥 117 (+105)      | 🟩 15 (+3)   |
-| Log           | 🟩 **117**      | 🟥 222 (+105)      | 🟩 120 (+3)  |
-| Account (1)   | 🟩 **32**       | 🟥 317 (+285)      | 🟩 38 (+6)   |
-| Account (3)   | 🟩 **60**       | 🟥 641 (+581)      | 🟩 68 (+8)   |
-| Account (5)   | 🟩 **88**       | 🟥 965 (+877)      | 🟩 98 (+10)  |
-| Account (10)  | 🟩 **158**      | 🟥 1,775 (+1,617)  | 🟨 173 (+15) |
-| Account (20)  | 🟩 **298**      | 🟥 3,395 (+3,097)  | 🟨 323 (+25) |
-| Account (32)  | 🟩 **466**      | 🟥 5,339 (+4,873)  | 🟨 503 (+37) |
-| Account (64)  | 🟩 **914**      | 🟥 10,523 (+9,609) | 🟨 983 (+69) |
+| Benchmark     | `pinocchio`     | `solana-program` | `jiminy`      |
+| ------------- | --------------- | ---------------- | ------------- |
+| Ping          | 🟩 **14**       | 🟨 98 (+84)       | 🟩 16 (+2)    |
+| Log           | 🟩 **118**      | 🟨 202 (+84)      | 🟩 120 (+3)   |
+| Account (1)   | 🟩 **22**       | 🟥 268 (+246)     | 🟨 37 (+15)   |
+| Account (3)   | 🟩 **44**       | 🟥 546 (+502)     | 🟨 67 (+23)   |
+| Account (5)   | 🟩 **59**       | 🟥 824 (+765)     | 🟨 97 (+38)   |
+| Account (10)  | 🟩 **101**      | 🟥 1,519 (+1,418) | 🟨 172 (+71)  |
+| Account (20)  | 🟩 **177**      | 🟥 2,909 (+2,732) | 🟥 322 (+145) |
+| Account (32)  | 🟩 **269**      | 🟥 4,577 (+4,308) | 🟥 502 (+233) |
+| Account (64)  | 🟩 **512**      | 🟥 9,025 (+8,513) | 🟥 982 (+470) |
 
 > [!IMPORTANT]
 > Values correspond to compute units (CUs) consumed by the entrypoint. The delta in relation to the lowest consumption is shown in brackets.
+>   - 🟩 (green): value within 10 CUs of the best value (`value < (best value + 10)`)
+>   - 🟨 (yellow): value within 100 CUs of the best value (`value < (best value + 100)`)
+>   - 🟥 (red): value over 100 CUs of the best value (`value > (best value + 100)`)
 >
-> Solana CLI `v2.2.15` was used in the bench tests.
+> Solana platform tools `v1.51` with `LTO` enabled was used in the bench tests.
 
 ## CPI and Binary Size
 
-There are also benchmarks for CPI and binary size produced by the different entrypoints libraries. Note that these actually measure how efficient the helpers of the library are
-instead of the entrypoint efficiency, since it is generally possible to improve/re-write
-the helpers.
+There are also benchmarks for CPI and binary size produced by the different entrypoints libraries. Note that these actually measure how efficient the helpers of the library are instead of the entrypoint efficiency, since it is generally possible to improve/re-write the helpers.
 
 
 ### CPI
 
 | Benchmark (CPI)        | `pinocchio`     | `solana-program`  | `jiminy`     |
 | ---------------------- | --------------- | ----------------- | ------------ |
-| system::create_account | 🟩 **1,309**    | 🟥 2,866 (+1,557) | 🟩 **1,309**  |
-| system::transfer       | 🟩 1,305 (+4)   | 🟥 2,459 (+1,158) | 🟩 **1,301**  |
+| system::create_account | 🟩 **1,291**    | 🟥 2,592 (+1,301) | 🟨 1,307 (+13)  |
+| system::transfer       | 🟩 **1,287**    | 🟥 2,189 (+902)   | 🟨 1,301 (+14)  |
 
 
 ### Binary Size
 
-|                     | `pinocchio`     | `solana-program`    | `jiminy` |
-| ------------------- | --------------- | ------------------- | -------- |
-| Binary size (bytes) | 🟨 4,040 (+520) | 🟥 68,832 (+65,312) | 🟩 3,520  |
+|                     | `pinocchio`     | `solana-program` | `jiminy`  |
+| ------------------- | --------------- | -----------------| --------- |
+| Binary size (bytes) | 5,824 (+2,144)  | 64,784 (+61,104) | **3,680** |
 
 ## Benchmark
 
@@ -131,7 +132,7 @@ pnpm install
 This will install the required packages. Then all programs can be buiit using:
 
 ```bash
-pnpm programs:build
+RUSTFLAGS="-C embed-bitcode=yes -C lto=fat" pnpm programs:build --tools-version v1.51
 ```
 
 After this, you are ready to run individual benchmarks by using:

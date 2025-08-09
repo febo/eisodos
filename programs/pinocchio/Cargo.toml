@@ -17,6 +17,6 @@ check-cfg = [
 crate-type = ["cdylib"]
 
 [dependencies]
-pinocchio = { version = "0.8", git = "https://github.com/anza-xyz/pinocchio.git", branch = "febo/entrypoint-cleanup" }
-pinocchio-pubkey = { version = "0.2", git = "https://github.com/anza-xyz/pinocchio.git", branch = "febo/entrypoint-cleanup" }
-pinocchio-system = { version = "0.2", git = "https://github.com/anza-xyz/pinocchio.git", branch = "febo/entrypoint-cleanup" }
+pinocchio = "0.9"
+pinocchio-pubkey = "0.3"
+pinocchio-system = "0.3"

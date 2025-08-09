@@ -14,10 +14,13 @@ use setup::*;
 mod solana_program {
 
     use super::*;
+    use solana_pubkey::Pubkey;
     use test::Bencher;
+
+    pub const ID: Pubkey = Pubkey::from_str_const("SoLanaProgram111111111111111111111111111111");
 
     #[bench]
     fn run(_bencher: &mut Bencher) {
-        runner::run(&eisodos_solana_program::ID, "eisodos_solana_program");
+        runner::run(&ID, "eisodos_solana_program");
     }
 }
